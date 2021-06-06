@@ -6,4 +6,5 @@
     <file type="web" url="file://$PROJECT_DIR$/tutofinder-membership-service" />
     <file type="web" url="file://$PROJECT_DIR$/tutofinder-tutorship-service" />
   </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>
