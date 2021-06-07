@@ -28,23 +28,25 @@ public class Teacher extends CommonEntity{
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(unique = true,nullable = false,length = 8)
+    @Column(unique = true,name = "dni",nullable = false,length = 8)
     private String dni;
 
-    /*@Column(nullable = false)
-    private String domicilio;*/
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
 
     @Email(message = "@ required")
     @Column(unique = true,nullable = false)
     private String email;
 
-   /* @Column(unique = true,nullable = false,name = "numero_cuenta")
-    private String numeroCuenta;*/
+    @Column(unique = true,nullable = false,name = "deposit_number")
+    private String depositNumber;
 
     @Column(name = "hourly_cost",nullable = false)
     private Double hourlyCost;
 
-    private Boolean membresia;
+    @Column(name = "membership")
+    private Boolean membership;
 
     @Lob
     @JsonIgnore
