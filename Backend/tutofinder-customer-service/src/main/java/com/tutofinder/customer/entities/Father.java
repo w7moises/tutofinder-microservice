@@ -35,6 +35,10 @@ public class Father extends CommonEntity{
     @Column(unique = true,nullable = false)
     private String email;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
+
     @OneToMany(mappedBy = "father", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties(value = {"father"}, allowSetters = true)
     private List<Student> students;
