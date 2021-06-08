@@ -1,22 +1,18 @@
 package com.tutofinder.customer.controllers;
 
 import com.tutofinder.customer.dto.StudentDto;
+import com.tutofinder.customer.dto.create.CreateStudentDto;
 import com.tutofinder.customer.entities.Student;
 import com.tutofinder.customer.service.StudentService;
 import com.tutofinder.customer.util.EntityConverter;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.List;
 
 @Api
@@ -45,16 +41,16 @@ public class StudentController {
 
     @ApiOperation(value = "Creates a student", notes = "This Operation creates a new student.")
     @PostMapping(value = "student")
-    public ResponseEntity<StudentDto> createStudent(@RequestBody @Valid StudentDto studentDto){
-        Student student = converter.convertStudentToEntity(studentDto);
+    public ResponseEntity<StudentDto> createStudent(@RequestBody @Valid CreateStudentDto studentDto){
+        Student student = converter.convertCreateStudentToEntity(studentDto);
         student = studentService.createStudent(student);
         return new ResponseEntity<>(converter.convertStudentToDto(student), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "Modifies a  student", notes = "This Operation modifies a student.")
     @PutMapping(value = "student/{studentId}")
-    public ResponseEntity<StudentDto> updateStudent(@RequestBody @Valid StudentDto studentDto,@PathVariable Long studentId){
-        Student student = converter.convertStudentToEntity(studentDto);
+    public ResponseEntity<StudentDto> updateStudent(@RequestBody @Valid CreateStudentDto studentDto,@PathVariable Long studentId){
+        Student student = converter.convertCreateStudentToEntity(studentDto);
         student = studentService.updateStudent(student,studentId);
         return new ResponseEntity<>(converter.convertStudentToDto(student), HttpStatus.CREATED);
     }

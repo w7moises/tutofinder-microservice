@@ -1,9 +1,13 @@
 package com.tutofinder.customer.dto;
 
 import com.tutofinder.customer.util.EducationLevel;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+import java.util.Date;
+
+@Getter
+@Setter
 public class StudentDto {
     private Long id;
     private String firstName;
@@ -11,4 +15,6 @@ public class StudentDto {
     private String dni;
     private String email;
     private EducationLevel educationLevel;
+    private Date createdDate;
+    private Date lastUpdateDate;
 }

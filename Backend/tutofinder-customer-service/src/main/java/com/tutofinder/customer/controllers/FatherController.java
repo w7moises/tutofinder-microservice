@@ -1,6 +1,7 @@
 package com.tutofinder.customer.controllers;
 
 import com.tutofinder.customer.dto.FatherDto;
+import com.tutofinder.customer.dto.create.CreateFatherDto;
 import com.tutofinder.customer.entities.Father;
 import com.tutofinder.customer.service.FatherService;
 import com.tutofinder.customer.util.EntityConverter;
@@ -53,16 +54,16 @@ public class FatherController {
 
     @ApiOperation(value = "Creates a father", notes = "This Operation creates a new father.")
     @PostMapping(value = "father")
-    public ResponseEntity<FatherDto> createFather(@Valid FatherDto fatherDto, @RequestParam MultipartFile file) throws IOException{
-        Father father = converter.convertFatherToEntity(fatherDto);
+    public ResponseEntity<FatherDto> createFather(@Valid CreateFatherDto fatherDto, @RequestParam MultipartFile file) throws IOException{
+        Father father = converter.convertCreateFatherToEntity(fatherDto);
         father = fatherService.createFather(father,file);
         return new ResponseEntity<>(converter.convertFatherToDto(father), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "Modifies a father", notes = "This Operation modifies a father.")
     @PutMapping(value = "father/{fatherId}")
-    public ResponseEntity<FatherDto> updateFather(@Valid FatherDto fatherDto,@PathVariable Long fatherId, @RequestParam MultipartFile file) throws IOException{
-        Father father = converter.convertFatherToEntity(fatherDto);
+    public ResponseEntity<FatherDto> updateFather(@Valid CreateFatherDto fatherDto,@PathVariable Long fatherId, @RequestParam MultipartFile file) throws IOException{
+        Father father = converter.convertCreateFatherToEntity(fatherDto);
         father = fatherService.updateFather(father,fatherId,file);
         return new ResponseEntity<>(converter.convertFatherToDto(father), HttpStatus.CREATED);
     }

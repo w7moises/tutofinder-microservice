@@ -2,6 +2,8 @@ package com.tutofinder.customer.util;
 
 import com.tutofinder.customer.dto.FatherDto;
 import com.tutofinder.customer.dto.StudentDto;
+import com.tutofinder.customer.dto.create.CreateFatherDto;
+import com.tutofinder.customer.dto.create.CreateStudentDto;
 import com.tutofinder.customer.entities.Father;
 import com.tutofinder.customer.entities.Student;
 import org.modelmapper.ModelMapper;
@@ -22,10 +24,16 @@ public class EntityConverter {
     public Father convertFatherToEntity(FatherDto fatherDto) {
         return modelMapper.map(fatherDto, Father.class);
     }
+    public Father convertCreateFatherToEntity(CreateFatherDto fatherDto) {
+        return modelMapper.map(fatherDto, Father.class);
+    }
     public StudentDto convertStudentToDto(Student student) {
         return modelMapper.map(student,StudentDto.class);
     }
     public Student convertStudentToEntity(StudentDto studentDto) {
+        return modelMapper.map(studentDto, Student.class);
+    }
+    public Student convertCreateStudentToEntity(CreateStudentDto studentDto) {
         return modelMapper.map(studentDto, Student.class);
     }
     public List<StudentDto> convertStudentToDto(List<Student> students) {
