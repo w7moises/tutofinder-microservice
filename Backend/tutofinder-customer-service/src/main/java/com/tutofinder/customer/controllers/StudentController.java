@@ -7,7 +7,10 @@ import com.tutofinder.customer.util.EntityConverter;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,6 +28,14 @@ public class StudentController {
 
     @Autowired
     private EntityConverter converter;
+
+    @ApiOperation(value = "Retrieve a picture from the student", notes = "This Operation returns a student's picture.")
+    @GetMapping("/student/img/{studentId}")
+    public ResponseEntity<?> findPicture(@PathVariable Long studentId){
+        Student student = studentService.getStudentById(studentId);
+        Resource picture = new ByteArrayResource(student.getProfilePicture());
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(picture);
+    }
 
     @ApiOperation(value = "Retrieve all existed students", notes = "This Operation returns all stored  students.")
     @GetMapping(value = "student")

@@ -1,7 +1,6 @@
 package com.tutofinder.customer.service.impl;
 
 import com.tutofinder.customer.entities.Student;
-import com.tutofinder.customer.exceptions.FatherNotFoundException;
 import com.tutofinder.customer.exceptions.StudentNotFoundException;
 import com.tutofinder.customer.repositories.StudentRepository;
 import com.tutofinder.customer.service.StudentService;
