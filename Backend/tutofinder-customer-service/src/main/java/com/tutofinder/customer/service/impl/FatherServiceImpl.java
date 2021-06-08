@@ -52,14 +52,12 @@ public class FatherServiceImpl implements FatherService {
             throw new FatherNotFoundException(fatherId.toString());
         }
         Father newFather = father.get();
-        newFather = Father.builder()
-                .firstName(updateFather.getFirstName())
-                .lastName(updateFather.getLastName())
-                .dni(updateFather.getDni())
-                .email(updateFather.getEmail())
-                .address(updateFather.getAddress())
-                .profilePicture(file.getBytes())
-                .build();
+        newFather.setFirstName(updateFather.getFirstName());
+        newFather.setLastName(updateFather.getLastName());
+        newFather.setDni(updateFather.getDni());
+        newFather.setEmail(updateFather.getEmail());
+        newFather.setProfilePicture(file.getBytes());
+        newFather.setAddress(updateFather.getAddress());
         return fatherRepository.save(newFather);
     }
 
@@ -69,6 +67,6 @@ public class FatherServiceImpl implements FatherService {
             throw new FatherNotFoundException(fatherId.toString());
         }
         fatherRepository.deleteById(fatherId);
-        return "Father"+fatherId +"deleted";
+        return "Father id deleted: "+fatherId;
     }
 }

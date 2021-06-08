@@ -4,6 +4,7 @@ import com.tutofinder.customer.dto.FatherDto;
 import com.tutofinder.customer.entities.Father;
 import com.tutofinder.customer.service.FatherService;
 import com.tutofinder.customer.util.EntityConverter;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,8 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
+
+@Api
 @RestController
 public class FatherController {
     @Autowired
@@ -55,8 +58,8 @@ public class FatherController {
 
     @ApiOperation(value = "Deletes a father", notes = "This Operation deletes a father.")
     @DeleteMapping(value = "father/{fatherId}")
-    public ResponseEntity<String> deleteFather(@PathVariable Long fatherId) {
+    public String deleteFather(@PathVariable Long fatherId) {
         String response = fatherService.deleteFather(fatherId);
-        return new ResponseEntity<>(response,HttpStatus.NO_CONTENT);
+        return response;
     }
 }
