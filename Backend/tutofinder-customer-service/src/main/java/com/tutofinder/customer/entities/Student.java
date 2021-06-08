@@ -1,6 +1,8 @@
 package com.tutofinder.customer.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.tutofinder.customer.util.EducationLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,11 +42,7 @@ public class Student extends CommonEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "father_id",nullable = false)
+    @JsonIgnoreProperties(value = {"students", "hibernateLazyInitializer", "handler"})
     private Father father;
-
-    @Lob
-    @JsonIgnore
-    @Column(name = "profile_picture")
-    private byte[] profilePicture;
 
 }

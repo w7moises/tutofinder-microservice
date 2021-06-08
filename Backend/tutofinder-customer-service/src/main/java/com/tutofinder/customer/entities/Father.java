@@ -2,6 +2,7 @@ package com.tutofinder.customer.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,10 +41,9 @@ public class Father extends CommonEntity{
     private Address address;
 
     @OneToMany(mappedBy = "father", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties(value = {"father"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"father", "hibernateLazyInitializer", "handler"}, allowSetters = true)
     private List<Student> students;
 
-    @Lob
     @JsonIgnore
     @Column(name = "profile_picture")
     private byte[] profilePicture;

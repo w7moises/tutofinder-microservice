@@ -30,7 +30,7 @@ public class EntityConverter {
     }
     public List<StudentDto> convertStudentToDto(List<Student> students) {
         return students.stream()
-                .map(student -> modelMapper.map(students, StudentDto.class))
+                .map(student -> modelMapper.map(student, StudentDto.class))
                 .collect(Collectors.toList());
     }
     public List<FatherDto> convertFatherToDto(List<Father> fathers) {

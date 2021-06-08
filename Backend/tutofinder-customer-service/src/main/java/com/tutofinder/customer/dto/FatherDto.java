@@ -12,6 +12,5 @@ public class FatherDto {
     private String dni;
     private String email;
     private AddressDto address;
-    private byte[] profilePicture;
     private List<StudentDto> students;
 }

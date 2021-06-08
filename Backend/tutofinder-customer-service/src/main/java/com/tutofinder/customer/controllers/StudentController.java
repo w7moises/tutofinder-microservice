@@ -29,14 +29,6 @@ public class StudentController {
     @Autowired
     private EntityConverter converter;
 
-    @ApiOperation(value = "Retrieve a picture from the student", notes = "This Operation returns a student's picture.")
-    @GetMapping("/student/img/{studentId}")
-    public ResponseEntity<?> findPicture(@PathVariable Long studentId){
-        Student student = studentService.getStudentById(studentId);
-        Resource picture = new ByteArrayResource(student.getProfilePicture());
-        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(picture);
-    }
-
     @ApiOperation(value = "Retrieve all existed students", notes = "This Operation returns all stored  students.")
     @GetMapping(value = "student")
     public ResponseEntity<List<StudentDto>> findAll() {
@@ -53,17 +45,17 @@ public class StudentController {
 
     @ApiOperation(value = "Creates a student", notes = "This Operation creates a new student.")
     @PostMapping(value = "student")
-    public ResponseEntity<StudentDto> createStudent(@Valid StudentDto studentDto, @RequestParam MultipartFile file) throws IOException{
+    public ResponseEntity<StudentDto> createStudent(@RequestBody @Valid StudentDto studentDto){
         Student student = converter.convertStudentToEntity(studentDto);
-        student = studentService.createStudent(student,file);
+        student = studentService.createStudent(student);
         return new ResponseEntity<>(converter.convertStudentToDto(student), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "Modifies a  student", notes = "This Operation modifies a student.")
     @PutMapping(value = "student/{studentId}")
-    public ResponseEntity<StudentDto> updateStudent(@Valid StudentDto studentDto,@PathVariable Long studentId, @RequestParam MultipartFile file) throws IOException{
+    public ResponseEntity<StudentDto> updateStudent(@RequestBody @Valid StudentDto studentDto,@PathVariable Long studentId){
         Student student = converter.convertStudentToEntity(studentDto);
-        student = studentService.updateStudent(student,studentId,file);
+        student = studentService.updateStudent(student,studentId);
         return new ResponseEntity<>(converter.convertStudentToDto(student), HttpStatus.CREATED);
     }
 

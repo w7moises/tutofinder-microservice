@@ -6,6 +6,7 @@ import com.tutofinder.customer.repositories.StudentRepository;
 import com.tutofinder.customer.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -19,18 +20,22 @@ public class StudentServiceImpl implements StudentService {
     private StudentRepository studentRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public Student getStudentById(Long studentId) {
         Optional<Student> student = studentRepository.findById(studentId);
         return student.orElseThrow(()-> new StudentNotFoundException(studentId.toString()));
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Student> getStudents() {
         return studentRepository.findAll();
     }
 
+
     @Override
-    public Student createStudent(Student createStudent, MultipartFile file) throws IOException {
+    @Transactional
+    public Student createStudent(Student createStudent){
         Student newStudent = Student.builder()
                 .firstName(createStudent.getFirstName())
                 .lastName(createStudent.getLastName())
@@ -38,13 +43,13 @@ public class StudentServiceImpl implements StudentService {
                 .educationLevel(createStudent.getEducationLevel())
                 .email(createStudent.getEmail())
                 .father(createStudent.getFather())
-                .profilePicture(file.getBytes())
                 .build();
         return studentRepository.save(newStudent);
     }
 
     @Override
-    public Student updateStudent(Student updateStudent, Long studentId, MultipartFile file) throws IOException {
+    @Transactional
+    public Student updateStudent(Student updateStudent, Long studentId){
         Optional<Student> student = studentRepository.findById(studentId);
         if(!student.isPresent()){
             throw new StudentNotFoundException(studentId.toString());
@@ -56,7 +61,6 @@ public class StudentServiceImpl implements StudentService {
         newStudent.setEmail(updateStudent.getEmail());
         newStudent.setEducationLevel(updateStudent.getEducationLevel());
         newStudent.setFather(updateStudent.getFather());
-        newStudent.setProfilePicture(file.getBytes());
         return studentRepository.save(newStudent);
     }
 

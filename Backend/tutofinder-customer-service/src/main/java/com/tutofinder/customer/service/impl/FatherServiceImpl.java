@@ -8,6 +8,7 @@ import com.tutofinder.customer.util.EntityConverter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -22,17 +23,20 @@ public class FatherServiceImpl implements FatherService {
     private FatherRepository fatherRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public Father getFatherById(Long fatherId) {
         Optional<Father> father = fatherRepository.findById(fatherId);
         return father.orElseThrow(()->new FatherNotFoundException(fatherId.toString()));
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Father> getFathers() {
         return fatherRepository.findAll();
     }
 
     @Override
+    @Transactional
     public Father createFather(Father createFather, MultipartFile file) throws IOException {
         Father newFather = Father.builder()
                 .firstName(createFather.getFirstName())
@@ -46,6 +50,7 @@ public class FatherServiceImpl implements FatherService {
     }
 
     @Override
+    @Transactional
     public Father updateFather(Father updateFather, Long fatherId, MultipartFile file) throws IOException {
         Optional<Father> father = fatherRepository.findById(fatherId);
         if(!father.isPresent()){

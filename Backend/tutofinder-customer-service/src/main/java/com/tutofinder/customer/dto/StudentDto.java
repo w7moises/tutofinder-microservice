@@ -11,6 +11,4 @@ public class StudentDto {
     private String dni;
     private String email;
     private EducationLevel educationLevel;
-    private FatherDto father;
-    private byte[] profilePicture;
 }
