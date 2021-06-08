@@ -1,6 +1,5 @@
 package com.tutofinder.customer.dto;
 
-import com.tutofinder.customer.util.EducationLevel;
 import lombok.Data;
 
 import java.util.List;

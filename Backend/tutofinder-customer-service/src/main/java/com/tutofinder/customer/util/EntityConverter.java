@@ -2,7 +2,6 @@ package com.tutofinder.customer.util;
 
 import com.tutofinder.customer.dto.FatherDto;
 import com.tutofinder.customer.entities.Father;
-import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
