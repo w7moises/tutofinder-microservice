@@ -30,14 +30,14 @@ public class FatherController {
     @GetMapping(value = "father")
     public ResponseEntity<List<FatherDto>> findAll() {
         List<Father> fathers = fatherService.getFathers();
-        return new ResponseEntity<>(converter.convertEntityToDto(fathers), HttpStatus.OK);
+        return new ResponseEntity<>(converter.convertFatherToDto(fathers), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Retrieve a father based on Id ", notes = "This Operation returns a father by Father Id")
     @GetMapping(value = "father/{fatherId}")
     public ResponseEntity<FatherDto> findById(@PathVariable Long fatherId) {
         Father father = fatherService.getFatherById(fatherId);
-        return new ResponseEntity<>(converter.convertEntityToDto(father), HttpStatus.OK);
+        return new ResponseEntity<>(converter.convertFatherToDto(father), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Creates a father", notes = "This Operation creates a new father.")
@@ -45,7 +45,7 @@ public class FatherController {
     public ResponseEntity<FatherDto> createFather(@Valid FatherDto fatherDto, @RequestParam MultipartFile file) throws IOException{
         Father father = converter.convertFatherToEntity(fatherDto);
         father = fatherService.createFather(father,file);
-        return new ResponseEntity<>(converter.convertEntityToDto(father), HttpStatus.CREATED);
+        return new ResponseEntity<>(converter.convertFatherToDto(father), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "Modifies a father", notes = "This Operation modifies a father.")
@@ -53,7 +53,7 @@ public class FatherController {
     public ResponseEntity<FatherDto> updateFather(@Valid FatherDto fatherDto,@PathVariable Long fatherId, @RequestParam MultipartFile file) throws IOException{
         Father father = converter.convertFatherToEntity(fatherDto);
         father = fatherService.updateFather(father,fatherId,file);
-        return new ResponseEntity<>(converter.convertEntityToDto(father), HttpStatus.CREATED);
+        return new ResponseEntity<>(converter.convertFatherToDto(father), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "Deletes a father", notes = "This Operation deletes a father.")

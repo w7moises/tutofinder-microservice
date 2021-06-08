@@ -61,7 +61,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
-  <component name="RunManager" selected="Spring Boot.TutofinderPaymentServiceApplication">
+  <component name="RunManager" selected="Spring Boot.TutofinderCustomerServiceApplication">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -69,6 +69,19 @@
         </value>
       </option>
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TutofinderCustomerServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="tutofinder-customer-service.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tutofinder.customer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.tutofinder.customer.TutofinderCustomerServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -94,6 +107,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.TutofinderCustomerServiceApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -105,7 +123,7 @@
       <updated>1623165913333</updated>
       <workItem from="1623165915079" duration="71000" />
       <workItem from="1623166024839" duration="105000" />
-      <workItem from="1623166169667" duration="2642000" />
+      <workItem from="1623166169667" duration="5944000" />
     </task>
     <servers />
   </component>
