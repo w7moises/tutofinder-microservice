@@ -14,7 +14,7 @@ public class EntityConverter {
     @Autowired
     private ModelMapper modelMapper;
 
-    public FatherDto convertFatherToDto(Father father) {
+    public FatherDto convertEntityToDto(Father father) {
         return modelMapper.map(father,FatherDto.class);
     }
     public Father convertFatherToEntity(FatherDto fatherDto) {
