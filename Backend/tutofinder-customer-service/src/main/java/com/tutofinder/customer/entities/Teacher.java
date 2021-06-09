@@ -46,7 +46,7 @@ public class Teacher extends CommonEntity{
     private Double hourlyCost;
 
     @Column(name = "membership")
-    private Boolean membership;
+    private String membership;
 
     @Lob
     @JsonIgnore

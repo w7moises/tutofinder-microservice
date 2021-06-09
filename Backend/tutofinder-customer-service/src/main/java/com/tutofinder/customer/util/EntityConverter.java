@@ -2,10 +2,13 @@ package com.tutofinder.customer.util;
 
 import com.tutofinder.customer.dto.FatherDto;
 import com.tutofinder.customer.dto.StudentDto;
+import com.tutofinder.customer.dto.TeacherDto;
 import com.tutofinder.customer.dto.create.CreateFatherDto;
 import com.tutofinder.customer.dto.create.CreateStudentDto;
+import com.tutofinder.customer.dto.create.CreateTeacherDto;
 import com.tutofinder.customer.entities.Father;
 import com.tutofinder.customer.entities.Student;
+import com.tutofinder.customer.entities.Teacher;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -36,6 +39,15 @@ public class EntityConverter {
     public Student convertCreateStudentToEntity(CreateStudentDto studentDto) {
         return modelMapper.map(studentDto, Student.class);
     }
+    public TeacherDto convertTeacherToDto(Teacher teacher) {
+        return modelMapper.map(teacher,TeacherDto.class);
+    }
+    public Teacher convertTeacherToEntity(TeacherDto teacherDto) {
+        return modelMapper.map(teacherDto,Teacher.class);
+    }
+    public Teacher convertCreateTeacherToEntity(CreateTeacherDto teacherDto) {
+        return modelMapper.map(teacherDto, Teacher.class);
+    }
     public List<StudentDto> convertStudentToDto(List<Student> students) {
         return students.stream()
                 .map(student -> modelMapper.map(student, StudentDto.class))
@@ -44,6 +56,11 @@ public class EntityConverter {
     public List<FatherDto> convertFatherToDto(List<Father> fathers) {
         return fathers.stream()
                 .map(father -> modelMapper.map(father, FatherDto.class))
+                .collect(Collectors.toList());
+    }
+    public List<TeacherDto> convertTeacherToDto(List<Teacher> teachers) {
+        return teachers.stream()
+                .map(teacher -> modelMapper.map(teacher,TeacherDto.class))
                 .collect(Collectors.toList());
     }
 }

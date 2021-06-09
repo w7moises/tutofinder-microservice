@@ -4,6 +4,7 @@ import com.tutofinder.customer.entities.Teacher;
 import com.tutofinder.customer.exceptions.TeacherNotFoundException;
 import com.tutofinder.customer.repositories.TeacherRepository;
 import com.tutofinder.customer.service.TeacherService;
+import com.tutofinder.customer.util.Membreship;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,7 +43,7 @@ public class TeacherServiceImpl implements TeacherService {
                 .email(createTeacher.getEmail())
                 .address(createTeacher.getAddress())
                 .depositNumber(createTeacher.getDepositNumber())
-                .membership(createTeacher.getMembership())
+                .membership(Membreship.inactive.toString())
                 .hourlyCost(createTeacher.getHourlyCost())
                 .profilePicture(file.getBytes())
                 .build();
@@ -63,7 +64,7 @@ public class TeacherServiceImpl implements TeacherService {
         newTeacher.setEmail(updateTeacher.getEmail());
         newTeacher.setAddress(updateTeacher.getAddress());
         newTeacher.setDepositNumber(updateTeacher.getDepositNumber());
-        newTeacher.setMembership(updateTeacher.getMembership());
+        newTeacher.setMembership(newTeacher.getMembership());
         newTeacher.setHourlyCost(updateTeacher.getHourlyCost());
         newTeacher.setProfilePicture(file.getBytes());
         return teacherRepository.save(newTeacher);
