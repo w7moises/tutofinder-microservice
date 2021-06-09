@@ -1,4 +1,4 @@
-package com.tutofinder.customer.config;
+package com.tutofinder.customer.config.security;
 
 import com.tutofinder.customer.entities.User;
 import com.tutofinder.customer.service.UserService;

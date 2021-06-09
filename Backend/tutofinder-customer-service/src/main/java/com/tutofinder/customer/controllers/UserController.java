@@ -13,12 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin({"http://localhost:4200"})
 @Api
 @RestController
 public class UserController {
@@ -32,6 +34,7 @@ public class UserController {
     @Autowired
     private EntityConverter converter;
 
+    @Secured("ROLE_ADMIN")
     @ApiOperation(value = "Retrieve all existed users", notes = "This Operation returns all stored users.")
     @GetMapping(value = "user")
     public ResponseEntity<List<UserDto>> findAll() {

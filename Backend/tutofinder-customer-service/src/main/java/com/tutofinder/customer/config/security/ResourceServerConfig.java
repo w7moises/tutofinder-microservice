@@ -1,4 +1,4 @@
-package com.tutofinder.customer.config;
+package com.tutofinder.customer.config.security;
 
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -24,6 +24,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers("/v2/api-docs/**").permitAll()
                 .antMatchers("/api/v1/user/**").permitAll()
                 .antMatchers("/api/v1/father/**").hasRole("FATHER")
+                .antMatchers("/api/v1/student/**").hasRole("FATHER")
                 .antMatchers("/api/v1/teacher/**").hasRole("TEACHER")
                 .antMatchers("/api/v1/oauth/**").permitAll()
                 .and().cors().configurationSource(corsConfigurationSource());

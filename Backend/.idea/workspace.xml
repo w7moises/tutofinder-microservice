@@ -74,17 +74,6 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunManager" selected="Spring Boot.TutofinderCustomerServiceApplication">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="TutofinderCustomerServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="tutofinder-customer-service.main" />
       <extension name="coverage">
@@ -139,7 +128,8 @@
       <workItem from="1623210544075" duration="2573000" />
       <workItem from="1623213161034" duration="6631000" />
       <workItem from="1623253132537" duration="107000" />
-      <workItem from="1623253248169" duration="13228000" />
+      <workItem from="1623253248169" duration="13416000" />
+      <workItem from="1623271952429" duration="2684000" />
     </task>
     <servers />
   </component>

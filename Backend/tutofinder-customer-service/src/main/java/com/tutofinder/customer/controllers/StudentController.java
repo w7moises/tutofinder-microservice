@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin({"http://localhost:4200"})
 @Api
 @RestController
 public class StudentController {

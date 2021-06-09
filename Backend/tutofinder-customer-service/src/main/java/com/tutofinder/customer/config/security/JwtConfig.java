@@ -1,4 +1,4 @@
-package com.tutofinder.customer.config;
+package com.tutofinder.customer.config.security;
 
 public class JwtConfig {
 
