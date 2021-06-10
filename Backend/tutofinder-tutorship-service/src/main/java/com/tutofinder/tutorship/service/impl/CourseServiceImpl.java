@@ -7,10 +7,11 @@ import java.util.stream.Collectors;
 import com.tutofinder.tutorship.dto.CourseDto;
 import com.tutofinder.tutorship.dto.create.CreateCourseDto;
 import com.tutofinder.tutorship.entities.Course;
-import com.tutofinder.tutorship.exceptions.InternalServerErrorException;
-import com.tutofinder.tutorship.exceptions.NotFoundException;
+import com.tutofinder.tutorship.exceptions.CourseInternalServerException;
+import com.tutofinder.tutorship.exceptions.CourseNotFoundException;
 import com.tutofinder.tutorship.repositories.CourseRepository;
 import com.tutofinder.tutorship.service.CourseService;
+import com.tutofinder.tutorship.util.ExceptionMessagesEnum;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public CourseDto getCourseByName(String name) {
         final Course course = courseRepository.findByName(name)
-                .orElseThrow(() -> new NotFoundException("SNOT-404-1", "NAME_CURSO_NOT_FOUND"));
+                .orElseThrow(() -> new CourseNotFoundException(ExceptionMessagesEnum.COURSE_NOT_FOUND.getValue()));
         return modelMapper.map(course, CourseDto.class);
     }
 
@@ -54,7 +55,7 @@ public class CourseServiceImpl implements CourseService {
         try {
             id = courseRepository.save(courseEntity).getId();
         } catch (final Exception e) {
-            throw new InternalServerErrorException("INTERNAL_SERVER_ERROR", "INTERNAL_SERVER_ERROR");
+            throw new CourseInternalServerException("couldnt't create course object");
         }
         return modelMapper.map(getCourseEntity(id), CourseDto.class);
     }
@@ -63,7 +64,7 @@ public class CourseServiceImpl implements CourseService {
     public CourseDto updateCourse(CreateCourseDto createCourseDto, Long courseId) {
         Optional<Course> course = courseRepository.findById(courseId);
         if (!course.isPresent()) {
-            throw new NotFoundException("ID_NOT_FOOUND", "ID_NOT_FOUND");
+            throw new CourseNotFoundException(ExceptionMessagesEnum.COURSE_NOT_FOUND.getValue()));
         }
         Course courseEntity = course.get();
         Long id;
@@ -71,19 +72,20 @@ public class CourseServiceImpl implements CourseService {
         try {
             id = courseRepository.save(courseEntity).getId();
         } catch (final Exception e) {
-            throw new InternalServerErrorException("INTERNAL_SERVER_ERROR", "INTERNAL_SERVER_ERROR");
+            throw new CourseInternalServerException("couldnt't update course object");
         }
         return modelMapper.map(getCourseEntity(id), CourseDto.class);
     }
 
     @Override
     public String deleteCourse(Long courseId) {
-        courseRepository.findById(courseId).orElseThrow(() -> new NotFoundException("ID_NOT_FOOUND", "ID_NOT_FOUND"));
+        courseRepository.findById(courseId)
+                .orElseThrow(() -> new CourseNotFoundException(ExceptionMessagesEnum.COURSE_NOT_FOUND.getValue()));
 
         try {
             courseRepository.deleteById(courseId);
         } catch (Exception ex) {
-            throw new InternalServerErrorException("INTERNAL_ERROR", "INTERNAL_ERROR");
+            throw new CourseInternalServerException("couldnt't delete course object");
         }
 
         return "CURSO_DELETED";
@@ -91,6 +93,6 @@ public class CourseServiceImpl implements CourseService {
 
     private Course getCourseEntity(Long courseId) {
         return courseRepository.findById(courseId)
-                .orElseThrow(() -> new NotFoundException("SNOT-404-1", "CURSO_NOT_FOUND"));
+                .orElseThrow(() -> new CourseNotFoundException(ExceptionMessagesEnum.COURSE_NOT_FOUND.getValue()));
     }
 }
