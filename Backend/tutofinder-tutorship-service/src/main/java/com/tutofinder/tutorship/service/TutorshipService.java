@@ -1,14 +1,12 @@
 package com.tutofinder.tutorship.service;
 
-import java.util.List;
-
 import com.tutofinder.tutorship.dto.TutorShipDto;
 import com.tutofinder.tutorship.dto.create.CreateTutorShipDto;
-
 import org.springframework.data.domain.Pageable;
 
-public interface TutorShipService {
+import java.util.List;
 
+public interface TutorshipService {
     TutorShipDto getTutorShipById(Long TutorShipId);
     
     List<TutorShipDto> getTutorShips();
