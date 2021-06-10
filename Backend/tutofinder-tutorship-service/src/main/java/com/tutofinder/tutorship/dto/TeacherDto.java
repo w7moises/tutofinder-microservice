@@ -1,20 +1,20 @@
-package com.tutofinder.tutorship.dtos;
+package com.tutofinder.tutorship.dto;
 
-import com.tutofinder.tutorship.util.EducationLevel;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.Date;
 
-@Getter
-@Setter
-public class StudentDto {
+@Data
+public class TeacherDto {
     private Long id;
     private String firstName;
     private String lastName;
     private String dni;
     private String email;
-    private EducationLevel educationLevel;
+    private String depositNumber;
+    private Double hourlyCost;
+    private String membership;
+    private AddressDto address;
     private Date createdDate;
     private Date lastUpdateDate;
 }

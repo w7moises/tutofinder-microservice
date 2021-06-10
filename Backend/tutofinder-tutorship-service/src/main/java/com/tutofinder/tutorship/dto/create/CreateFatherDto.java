@@ -1,6 +1,7 @@
-package com.tutofinder.tutorship.dtos.create;
+package com.tutofinder.tutorship.dto.create;
 
-import com.tutofinder.tutorship.dtos.AddressDto;
+import com.tutofinder.tutorship.dto.AddressDto;
+
 import lombok.Data;
 
 @Data

@@ -1,6 +1,6 @@
-package com.tutofinder.tutorship.dtos.create;
+package com.tutofinder.tutorship.dto.create;
 
-import com.tutofinder.tutorship.dtos.FatherDto;
+import com.tutofinder.tutorship.dto.FatherDto;
 import com.tutofinder.tutorship.util.EducationLevel;
 import lombok.Data;
 

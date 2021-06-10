@@ -1,4 +1,4 @@
-package com.tutofinder.tutorship.dtos;
+package com.tutofinder.tutorship.dto;
 
 import lombok.Data;
 

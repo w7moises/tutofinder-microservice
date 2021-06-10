@@ -1,38 +1,37 @@
 package com.tutofinder.tutorship.client;
 
-import lombok.extern.slf4j.Slf4j;
+import java.util.Optional;
+
+import com.tutofinder.tutorship.config.TutorShipServiceConfig;
+import com.tutofinder.tutorship.dto.StudentDto;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Optional;
-
-import com.tutofinder.tutorship.dtos.TeacherDto;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class TeacherServiceClient {
+public class StudentServiceClient {
     private RestTemplate restTemplate;
 
     @Autowired
-    private TeacherServiceClient config;
+    private TutorShipServiceConfig config;
 
-    public TeacherServiceClient(RestTemplateBuilder builder) {
+    public StudentServiceClient(RestTemplateBuilder builder) {
         restTemplate = builder.build();
     }
 
-    public Optional<TeacherDto> findStudentById(String accountId) {
-        Optional<TeacherDto> result = Optional.empty();
+    public Optional<StudentDto> findStudentById(String studentId) {
+        Optional<StudentDto> result = Optional.empty();
         try {
             result = Optional.ofNullable(restTemplate.getForObject(
 										config.getCustomerServiceUrl() + "/{id}", 
-										TeacherDto.class, accountId));
-										//AccountDto.class: lo que quiero recibir
-										//accountId: lo que tengo que dar
+										StudentDto.class, studentId));
         }
         catch (HttpClientErrorException ex)   {
             if (ex.getStatusCode() != HttpStatus.NOT_FOUND) {
@@ -41,4 +40,6 @@ public class TeacherServiceClient {
         }
         return result;
     }
+
+
 }
