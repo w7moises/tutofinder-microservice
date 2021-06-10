@@ -30,7 +30,7 @@ public class CustomerServiceClient {
         Optional<StudentDto> result = Optional.empty();
         try {
             result = Optional.ofNullable(restTemplate.getForObject(
-										config.getCustomerServiceUrl() + "/{id}", 
+										config.getCustomerServiceUrl() + "student/{id}", 
 										StudentDto.class, studentId));
         }
         catch (HttpClientErrorException ex)   {

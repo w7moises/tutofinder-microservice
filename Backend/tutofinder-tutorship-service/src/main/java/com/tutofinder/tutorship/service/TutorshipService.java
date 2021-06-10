@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 public interface TutorShipService {
 
     TutorShipDto getTutorShipById(Long TutorShipId);
-
+    
     List<TutorShipDto> getTutorShips();
 
     List<TutorShipDto> getTutorShips(Pageable pageable);
