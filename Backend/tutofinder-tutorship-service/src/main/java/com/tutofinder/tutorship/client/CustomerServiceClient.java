@@ -16,13 +16,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class StudentServiceClient {
+public class CustomerServiceClient {
     private RestTemplate restTemplate;
 
     @Autowired
     private TutorShipServiceConfig config;
 
-    public StudentServiceClient(RestTemplateBuilder builder) {
+    public CustomerServiceClient(RestTemplateBuilder builder) {
         restTemplate = builder.build();
     }
 

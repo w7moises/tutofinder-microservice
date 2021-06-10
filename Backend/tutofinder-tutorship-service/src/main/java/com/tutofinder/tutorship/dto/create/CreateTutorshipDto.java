@@ -5,10 +5,11 @@ import com.tutofinder.tutorship.entities.Report;
 import lombok.Data;
 
 @Data
-public class CreateTutorshipDto {
-    private int cantidadMinutos;
 
-    private String descripcionTutoria;
+public class CreateTutorShipDto {
+    private int minutesAmmount;
+
+    private String tutorShipDescription;
 
     private Course course;
 
