@@ -14,6 +14,7 @@ import com.tutofinder.app.repository.AlumnoRepository;
 import com.tutofinder.app.repository.InformeRepository;
 import com.tutofinder.app.repository.TutoriaRepository;
 import com.tutofinder.app.services.InformeService;
+import com.tutofinder.tutorship.client.CustomerServiceClient;
 import com.tutofinder.tutorship.exceptions.InternalServerErrorException;
 
 import org.modelmapper.ModelMapper;
@@ -29,7 +30,7 @@ public class InformeServiceImpl implements InformeService {
     TutoriaRepository tutoriaRepository;
 
     @Autowired
-    AlumnoRepository alumnoRepository;
+    private CustomerServiceClient customerClient;
 
     public static final ModelMapper modelMapper= new ModelMapper();
 
@@ -49,7 +50,7 @@ public class InformeServiceImpl implements InformeService {
     public InformeDto createInforme(CreateInformeDto createInformeDto) throws BookingException {
         final Tutoria tutoria = tutoriaRepository.findById(createInformeDto.getTutoriaId())
                 .orElseThrow(() -> new NotFoundException("SNOT-404-1","TUTORIA_NOT_FOUND"));
-        final Alumno alumno = alumnoRepository.findById(createInformeDto.getAlumnoId())
+        final Alumno alumno = customerClient.findById(createInformeDto.getAlumnoId())
                 .orElseThrow(() -> new NotFoundException("SNOT-404-1","ALUMNO_NOT_FOUND"));
 
         Informe informeEntity = new Informe();
