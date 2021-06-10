@@ -2,7 +2,6 @@ package com.tutofinder.customer.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -43,6 +42,12 @@ public class Father extends CommonEntity{
     @OneToMany(mappedBy = "father", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties(value = {"father", "hibernateLazyInitializer", "handler"}, allowSetters = true)
     private List<Student> students;
+
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinTable(name = "favorite",joinColumns = @JoinColumn(name = "father_id"),
+            inverseJoinColumns = @JoinColumn(name = "teacher_id"),
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"father_id","teacher_id"})})
+    private List<Teacher> teachers;
 
     @JsonIgnore
     @Column(name = "profile_picture")

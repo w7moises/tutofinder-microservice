@@ -12,4 +12,6 @@ public interface FatherService {
     Father createFather(Father createFather, MultipartFile file) throws IOException;
     Father updateFather(Father updateFather, Long fatherId, MultipartFile file) throws IOException;
     String deleteFather(Long fatherId);
+    Father registerFavorite(Long fatherId,Long teacherId);
+    String deleteFavorite(Long fatherId,Long teacherId);
 }

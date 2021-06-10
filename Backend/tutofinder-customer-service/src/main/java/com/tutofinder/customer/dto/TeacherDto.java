@@ -13,8 +13,7 @@ public class TeacherDto {
     private String email;
     private String depositNumber;
     private Double hourlyCost;
-    private Boolean membership;
-    private byte[] profilePicture;
+    private String membership;
     private AddressDto address;
     private Date createdDate;
     private Date lastUpdateDate;

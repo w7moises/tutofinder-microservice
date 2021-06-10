@@ -74,4 +74,18 @@ public class FatherController {
         String response = fatherService.deleteFather(fatherId);
         return response;
     }
+
+    @ApiOperation(value = "Create a favorite", notes = "This Operation creates a new favorite.")
+    @PutMapping(value = "father/{fatherId}/favorite/{teacherId}")
+    public ResponseEntity<FatherDto> createFavorite(@PathVariable Long fatherId,@PathVariable Long teacherId){
+        Father father = fatherService.registerFavorite(fatherId, teacherId);
+        return new ResponseEntity<>(converter.convertFatherToDto(father), HttpStatus.CREATED);
+    }
+
+    @ApiOperation(value = "Delete a favorite", notes = "This Operation deletes a favorite.")
+    @DeleteMapping(value = "father/{fatherId}/favorite/{teacherId}")
+    public ResponseEntity<String> deleteFavorite(@PathVariable Long fatherId,@PathVariable Long teacherId){
+        String response = fatherService.deleteFavorite(fatherId, teacherId);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

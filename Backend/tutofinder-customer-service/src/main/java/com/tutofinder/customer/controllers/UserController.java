@@ -30,7 +30,6 @@ public class UserController {
     @Autowired
     PasswordEncoder bCryptPasswordEncoder;
 
-
     @Autowired
     private EntityConverter converter;
 

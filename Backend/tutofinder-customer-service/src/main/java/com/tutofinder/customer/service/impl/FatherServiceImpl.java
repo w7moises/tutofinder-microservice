@@ -1,8 +1,10 @@
 package com.tutofinder.customer.service.impl;
 
 import com.tutofinder.customer.entities.Father;
+import com.tutofinder.customer.entities.Teacher;
 import com.tutofinder.customer.exceptions.FatherNotFoundException;
 import com.tutofinder.customer.repositories.FatherRepository;
+import com.tutofinder.customer.repositories.TeacherRepository;
 import com.tutofinder.customer.service.FatherService;
 import com.tutofinder.customer.util.EntityConverter;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +23,9 @@ public class FatherServiceImpl implements FatherService {
 
     @Autowired
     private FatherRepository fatherRepository;
+
+    @Autowired
+    private TeacherRepository teacherRepository;
 
     @Override
     @Transactional(readOnly = true)
@@ -73,5 +78,31 @@ public class FatherServiceImpl implements FatherService {
         }
         fatherRepository.deleteById(fatherId);
         return "Father id deleted: "+fatherId;
+    }
+
+    @Override
+    @Transactional
+    public Father registerFavorite(Long fatherId,Long teacherId) {
+        Optional<Father> father = fatherRepository.findById(fatherId);
+        Optional<Teacher> teacher = teacherRepository.findById(teacherId);
+        Father updateFather = father.get();
+        Teacher updateTeacher = teacher.get();
+        if(father.isPresent() && teacher.isPresent()){
+            fatherRepository.registerFavorite(updateFather.getId(), updateTeacher.getId());
+        }
+        return updateFather;
+    }
+
+    @Override
+    @Transactional
+    public String deleteFavorite(Long fatherId ,Long teacherId) {
+        Optional<Father> father = fatherRepository.findById(fatherId);
+        Optional<Teacher> teacher = teacherRepository.findById(teacherId);
+        Father updateFather = father.get();
+        Teacher updateTeacher = teacher.get();
+        if(father.isPresent() && teacher.isPresent()){
+            fatherRepository.deleteFavorite(updateFather.getId(),updateTeacher.getId());
+        }
+        return "Teacher deleted:  " + updateTeacher.getId();
     }
 }
