@@ -7,6 +7,6 @@ import lombok.Data;
 @Data
 public class CreateReportDto {
     private String descriptionReport;
-    private StudentDto student;
-    private TutorShipDto tutorShip;
+    private Long studentId;
+    private Long tutorShipId;
 }
