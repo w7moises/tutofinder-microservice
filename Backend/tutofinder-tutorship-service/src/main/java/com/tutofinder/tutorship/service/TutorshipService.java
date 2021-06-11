@@ -2,21 +2,21 @@ package com.tutofinder.tutorship.service;
 
 import java.util.List;
 
-import com.tutofinder.tutorship.dto.TutorShipDto;
 import com.tutofinder.tutorship.dto.create.CreateTutorShipDto;
+import com.tutofinder.tutorship.entities.TutorShip;
 
 import org.springframework.data.domain.Pageable;
 
 public interface TutorShipService {
-    TutorShipDto getTutorShipById(Long TutorShipId);
+    TutorShip getTutorShipById(Long TutorShipId);
 
-    List<TutorShipDto> getTutorShips();
+    List<TutorShip> getTutorShips();
 
-    List<TutorShipDto> getTutorShips(Pageable pageable);
+    List<TutorShip> getTutorShips(Pageable pageable);
 
-    TutorShipDto createTutorShip(CreateTutorShipDto tutorShip);
+    TutorShip createTutorShip(CreateTutorShipDto tutorShip);
 
-    TutorShipDto updateTutorShip(CreateTutorShipDto tutorShip, Long TutorShipId);
+    TutorShip updateTutorShip(CreateTutorShipDto tutorShip, Long TutorShipId);
 
     String deleteTutorShip(Long TutorShipId);
 }

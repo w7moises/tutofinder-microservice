@@ -46,19 +46,18 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     @Transactional
-    public ReportDto createReport(CreateReportDto createReportDto) {
-        
+    public Report createReport(Report report) {
         Report newReport = Report.builder()
-                .descriptionReport(createReportDto.getDescriptionReport())
-                .status(createReportDto.getStatus())
-                //.student(c)
+                .descriptionReport(report.getDescriptionReport())
+                .status(report.getStatus())
+                .student(report.getStudent())
                 .build();
         return reportRepository.save(newReport);
     }
 
     @Override
     @Transactional
-    public ReportDto updateReport(Report updateReport, Long ReportId, MultipartFile file) {
+    public Report updateReport(Report updateReport, Long ReportId, MultipartFile file) {
         Optional<Report> report = reportRepository.findById(ReportId);
         if(!report.isPresent()){
             throw new ReportNotFoundException(ReportId.toString());

@@ -4,17 +4,18 @@ import java.util.List;
 
 import com.tutofinder.tutorship.dto.CourseDto;
 import com.tutofinder.tutorship.dto.create.CreateCourseDto;
+import com.tutofinder.tutorship.entities.Course;
 
 public interface CourseService {
-    CourseDto getCourseById(Long CourseId);
+    Course getCourseById(Long CourseId);
 
-    CourseDto getCourseByName(String name);
+    Course getCourseByName(String name);
 
     List<CourseDto> getCourses();
 
-    CourseDto createCourse(CreateCourseDto createCourseDto);
+    Course createCourse(CreateCourseDto createCourseDto);
 
-    CourseDto updateCourse(CreateCourseDto createCourseDto, Long CourseId);
+    Course updateCourse(CreateCourseDto createCourseDto, Long CourseId);
 
     String deleteCourse(Long CourseId);
 }

@@ -2,7 +2,6 @@ package com.tutofinder.tutorship.service;
 
 import java.util.List;
 
-import com.tutofinder.tutorship.dto.ReportDto;
 import com.tutofinder.tutorship.dto.create.CreateReportDto;
 import com.tutofinder.tutorship.entities.Report;
 
@@ -13,9 +12,9 @@ public interface ReportService {
 
     List<Report> getReports();
 
-    ReportDto createReport(CreateReportDto createReportDto);
+    Report createReport(CreateReportDto reportDto);
 
-    ReportDto updateReport(Report updateReport, Long ReportId, MultipartFile file);
+    Report updateReport(CreateReportDto reportDto, Long ReportId, MultipartFile file);
 
     String deleteReport(Long ReportId);
 }
