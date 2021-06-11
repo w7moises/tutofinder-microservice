@@ -26,31 +26,41 @@ public class TutorShipServiceExceptionHandler extends ResponseEntityExceptionHan
         return new ResponseEntity<>(response, response.getStatus());
     }
 
+    @ExceptionHandler(IncorrectOrderRequestException.class)
+    public ResponseEntity<Object> handleIncorrectRequest(IncorrectOrderRequestException exception, WebRequest request) {
+        OrderServiceExceptionResponse response = new OrderServiceExceptionResponse(exception.getMessage(),
+                request.getDescription(false), HttpStatus.BAD_REQUEST, LocalDateTime.now());
+        return new ResponseEntity<>(response, response.getStatus());
+    }
+
     @ExceptionHandler(CourseNotFoundException.class)
-    public ResponseEntity<Object> handleResourceNotFound(CourseNotFoundException exception, WebRequest request) {
+    public ResponseEntity<Object> handleCourseResourceNotFound(CourseNotFoundException exception, WebRequest request) {
         TutorShipServiceExceptionResponse response = new TutorShipServiceExceptionResponse(exception.getMessage(),
                 request.getDescription(false), HttpStatus.NOT_FOUND, LocalDateTime.now());
         return new ResponseEntity<>(response, response.getStatus());
     }
 
     @ExceptionHandler(TutorShipNotFoundException.class)
-    public ResponseEntity<Object> handleResourceNotFound(TutorShipNotFoundException exception, WebRequest request) {
-        TutorShipServiceExceptionResponse response = new TutorShipServiceExceptionResponse(exception.getMessage(),
-                request.getDescription(false), HttpStatus.NOT_FOUND, LocalDateTime.now());
-        return new ResponseEntity<>(response, response.getStatus());
-    }
-
-    @ExceptionHandler(StudentNotFoundException.class)
-    public ResponseEntity<Object> handleResourceNotFound(StudentNotFoundException exception, WebRequest request) {
+    public ResponseEntity<Object> handleTutorShipResourceNotFound(TutorShipNotFoundException exception,
+            WebRequest request) {
         TutorShipServiceExceptionResponse response = new TutorShipServiceExceptionResponse(exception.getMessage(),
                 request.getDescription(false), HttpStatus.NOT_FOUND, LocalDateTime.now());
         return new ResponseEntity<>(response, response.getStatus());
     }
 
     @ExceptionHandler(ReportNotFoundException.class)
-    public ResponseEntity<Object> handleResourceNotFound(ReportNotFoundException exception, WebRequest request) {
+    public ResponseEntity<Object> handleReportResourceNotFound(ReportNotFoundException exception, WebRequest request) {
         TutorShipServiceExceptionResponse response = new TutorShipServiceExceptionResponse(exception.getMessage(),
                 request.getDescription(false), HttpStatus.NOT_FOUND, LocalDateTime.now());
         return new ResponseEntity<>(response, response.getStatus());
     }
+
+    @ExceptionHandler(StudentNotFoundException.class)
+    public ResponseEntity<Object> handleStudentResourceNotFound(StudentNotFoundException exception,
+            WebRequest request) {
+        TutorShipServiceExceptionResponse response = new TutorShipServiceExceptionResponse(exception.getMessage(),
+                request.getDescription(false), HttpStatus.NOT_FOUND, LocalDateTime.now());
+        return new ResponseEntity<>(response, response.getStatus());
+    }
+
 }
