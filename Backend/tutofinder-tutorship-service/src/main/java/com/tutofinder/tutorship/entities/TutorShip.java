@@ -34,8 +34,8 @@ public class TutorShip extends  CommonEntity {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Course course;
 
-    @Transient
-    private Teacher teacher;
+    @Column(name = "teacher_id")
+    private Long teacherId;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "report_id")

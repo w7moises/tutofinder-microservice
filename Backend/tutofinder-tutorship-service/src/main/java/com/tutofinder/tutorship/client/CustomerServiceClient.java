@@ -27,7 +27,7 @@ public class CustomerServiceClient {
         restTemplate = builder.build();
     }
 
-    public Optional<StudentDto> findStudentById(String studentId) {
+    public Optional<StudentDto> findStudentById(Long studentId) {
         Optional<StudentDto> result = Optional.empty();
         try {
             result = Optional.ofNullable(restTemplate.getForObject(
@@ -42,7 +42,7 @@ public class CustomerServiceClient {
         return result;
     }
 
-    public Optional<TeacherDto> findTeacherById(String teacherId) {
+    public Optional<TeacherDto> findTeacherById(Long teacherId) {
         Optional<TeacherDto> result = Optional.empty();
         try {
             result = Optional.ofNullable(restTemplate.getForObject(

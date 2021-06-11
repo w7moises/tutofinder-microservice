@@ -22,9 +22,10 @@ public class Report  extends  CommonEntity{
     @Column(name = "description_report")
     private String descriptionReport;
 
-    @Transient
-    private Student student;
+    @Column(name = "student_id")
+    private Long studentId;
 
-    @Transient
-    private  TutorShip tutorShip;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tutor_ship_id")
+    private TutorShip tutoShip;
 }
