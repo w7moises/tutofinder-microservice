@@ -2,9 +2,12 @@ package com.tutofinder.tutorship.handler;
 
 import java.time.LocalDateTime;
 
+import com.tutofinder.tutorship.exceptions.CourseInternalServerException;
 import com.tutofinder.tutorship.exceptions.CourseNotFoundException;
+import com.tutofinder.tutorship.exceptions.ReportInternalServerException;
 import com.tutofinder.tutorship.exceptions.ReportNotFoundException;
 import com.tutofinder.tutorship.exceptions.StudentNotFoundException;
+import com.tutofinder.tutorship.exceptions.TutorShipInternalServerException;
 import com.tutofinder.tutorship.exceptions.TutorShipNotFoundException;
 import com.tutofinder.tutorship.exceptions.TutorShipServiceExceptionResponse;
 
@@ -26,10 +29,24 @@ public class TutorShipServiceExceptionHandler extends ResponseEntityExceptionHan
         return new ResponseEntity<>(response, response.getStatus());
     }
 
-    @ExceptionHandler(IncorrectOrderRequestException.class)
-    public ResponseEntity<Object> handleIncorrectRequest(IncorrectOrderRequestException exception, WebRequest request) {
-        OrderServiceExceptionResponse response = new OrderServiceExceptionResponse(exception.getMessage(),
-                request.getDescription(false), HttpStatus.BAD_REQUEST, LocalDateTime.now());
+    @ExceptionHandler(CourseInternalServerException.class)
+    public ResponseEntity<Object> handleIncorrectRequest(CourseInternalServerException exception, WebRequest request) {
+        TutorShipServiceExceptionResponse response = new TutorShipServiceExceptionResponse(exception.getMessage(),
+                request.getDescription(false), HttpStatus.INTERNAL_SERVER_ERROR, LocalDateTime.now());
+        return new ResponseEntity<>(response, response.getStatus());
+    }
+
+    @ExceptionHandler(ReportInternalServerException.class)
+    public ResponseEntity<Object> handleIncorrectRequest(ReportInternalServerException exception, WebRequest request) {
+        TutorShipServiceExceptionResponse response = new TutorShipServiceExceptionResponse(exception.getMessage(),
+                request.getDescription(false), HttpStatus.INTERNAL_SERVER_ERROR, LocalDateTime.now());
+        return new ResponseEntity<>(response, response.getStatus());
+    }
+
+    @ExceptionHandler(TutorShipInternalServerException.class)
+    public ResponseEntity<Object> handleIncorrectRequest(TutorShipInternalServerException exception, WebRequest request) {
+        TutorShipServiceExceptionResponse response = new TutorShipServiceExceptionResponse(exception.getMessage(),
+                request.getDescription(false), HttpStatus.INTERNAL_SERVER_ERROR, LocalDateTime.now());
         return new ResponseEntity<>(response, response.getStatus());
     }
 
