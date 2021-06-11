@@ -64,7 +64,7 @@ public class CourseServiceImpl implements CourseService {
     public CourseDto updateCourse(CreateCourseDto createCourseDto, Long courseId) {
         Optional<Course> course = courseRepository.findById(courseId);
         if (!course.isPresent()) {
-            throw new CourseNotFoundException(ExceptionMessagesEnum.COURSE_NOT_FOUND.getValue()));
+            throw new CourseNotFoundException(ExceptionMessagesEnum.COURSE_NOT_FOUND.getValue());
         }
         Course courseEntity = course.get();
         Long id;
