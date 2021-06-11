@@ -27,7 +27,6 @@ public class CourseServiceImpl implements CourseService {
     public static final ModelMapper modelMapper = new ModelMapper();
 
     @Override
-    @Transactional(readOnly = true)
     public CourseDto getCourseById(Long courseId) {
         return modelMapper.map(getCourseEntity(courseId), CourseDto.class);
     }
