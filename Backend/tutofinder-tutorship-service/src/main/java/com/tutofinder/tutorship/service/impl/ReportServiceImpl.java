@@ -45,11 +45,11 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     @Transactional
-    public Report createReport(CreateReportDto createReportDto) {
+    public Report createReport(Report report) {
         Report newReport = Report.builder()
-                .descriptionReport(createReportDto.getDescriptionReport())
-                .status(createReportDto.getStatus())
-                //.student(c)
+                .descriptionReport(report.getDescriptionReport())
+                .status(report.getStatus())
+                .student(report.getStudent())
                 .build();
         return reportRepository.save(newReport);
     }

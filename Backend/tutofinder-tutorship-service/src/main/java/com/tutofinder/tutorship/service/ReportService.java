@@ -11,7 +11,7 @@ public interface ReportService {
 
     List<Report> getReports();
 
-    Report createReport(CreateReportDto createReportDto);
+    Report createReport(Report report);
 
     Report updateReport(Report updateReport, Long ReportId, MultipartFile file);
 
