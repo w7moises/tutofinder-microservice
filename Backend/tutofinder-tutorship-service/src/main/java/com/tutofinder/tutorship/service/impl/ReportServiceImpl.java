@@ -53,12 +53,16 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public Report createReport(CreateReportDto reportDto) {
+        //studentDto lo jalamos solo para verificar si existe
         StudentDto studentDto = customerServiceClient.findStudentById(reportDto.getStudentId())
                 .orElseThrow(() -> new StudentNotFoundException(ExceptionMessagesEnum.STUDENT_NOT_FOUND.getValue()));
-        Student student = 
         TutorShip tutorShip = tutorShipRepository.findById(reportDto.getTutorShipId())
                 .orElseThrow(() -> new CourseNotFoundException(ExceptionMessagesEnum.COURSE_NOT_FOUND.getValue()));
-        Report newReport = Report.builder().descriptionReport(reportDto.getDescriptionReport()).build();
+        Report newReport = Report.builder()
+        .descriptionReport(reportDto.getDescriptionReport())
+        .studentId(reportDto.getStudentId())
+        .tutorShip(tutorShip)
+        .build();
         return reportRepository.save(newReport);
     }
 
