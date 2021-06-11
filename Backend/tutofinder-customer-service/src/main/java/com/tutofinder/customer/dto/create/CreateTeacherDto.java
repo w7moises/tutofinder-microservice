@@ -8,7 +8,6 @@ public class CreateTeacherDto {
     private String firstName;
     private String lastName;
     private String dni;
-    private String email;
     private String depositNumber;
     private Double hourlyCost;
     private byte[] profilePicture;

@@ -9,7 +9,7 @@ import java.util.List;
 public interface FatherService {
     Father getFatherById(Long fatherId);
     List<Father> getFathers();
-    Father createFather(Father createFather, MultipartFile file) throws IOException;
+    Father createFather(Father createFather, MultipartFile file,String username) throws IOException;
     Father updateFather(Father updateFather, Long fatherId, MultipartFile file) throws IOException;
     String deleteFather(Long fatherId);
     Father registerFavorite(Long fatherId,Long teacherId);

@@ -8,6 +8,6 @@ public class CreateFatherDto {
     private String firstName;
     private String lastName;
     private String dni;
-    private String email;
+    private byte[] profilePicture;
     private AddressDto address;
 }

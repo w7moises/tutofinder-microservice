@@ -1,8 +1,10 @@
 package com.tutofinder.customer.service.impl;
 
 import com.tutofinder.customer.entities.Teacher;
+import com.tutofinder.customer.entities.User;
 import com.tutofinder.customer.exceptions.TeacherNotFoundException;
 import com.tutofinder.customer.repositories.TeacherRepository;
+import com.tutofinder.customer.repositories.UserRepository;
 import com.tutofinder.customer.service.TeacherService;
 import com.tutofinder.customer.util.Membreship;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class TeacherServiceImpl implements TeacherService {
     @Autowired
     private TeacherRepository teacherRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     @Transactional(readOnly = true)
     public Teacher getTeacherById(Long teacherId) {
@@ -35,12 +40,13 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     @Transactional
-    public Teacher createTeacher(Teacher createTeacher, MultipartFile file) throws IOException {
+    public Teacher createTeacher(Teacher createTeacher, MultipartFile file,String username) throws IOException {
+        User user = userRepository.findByUsername(username);
         Teacher newTeacher = Teacher.builder()
                 .firstName(createTeacher.getFirstName())
                 .lastName(createTeacher.getLastName())
                 .dni(createTeacher.getDni())
-                .email(createTeacher.getEmail())
+                .email(user.getEmail())
                 .address(createTeacher.getAddress())
                 .depositNumber(createTeacher.getDepositNumber())
                 .membership(Membreship.inactive.toString())

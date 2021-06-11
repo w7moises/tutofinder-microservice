@@ -2,9 +2,11 @@ package com.tutofinder.customer.service.impl;
 
 import com.tutofinder.customer.entities.Father;
 import com.tutofinder.customer.entities.Teacher;
+import com.tutofinder.customer.entities.User;
 import com.tutofinder.customer.exceptions.FatherNotFoundException;
 import com.tutofinder.customer.repositories.FatherRepository;
 import com.tutofinder.customer.repositories.TeacherRepository;
+import com.tutofinder.customer.repositories.UserRepository;
 import com.tutofinder.customer.service.FatherService;
 import com.tutofinder.customer.util.EntityConverter;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +27,9 @@ public class FatherServiceImpl implements FatherService {
     private FatherRepository fatherRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private TeacherRepository teacherRepository;
 
     @Override
@@ -42,12 +47,13 @@ public class FatherServiceImpl implements FatherService {
 
     @Override
     @Transactional
-    public Father createFather(Father createFather, MultipartFile file) throws IOException {
+    public Father createFather(Father createFather, MultipartFile file,String username) throws IOException {
+        User user = userRepository.findByUsername(username);
         Father newFather = Father.builder()
                 .firstName(createFather.getFirstName())
                 .lastName(createFather.getLastName())
                 .dni(createFather.getDni())
-                .email(createFather.getEmail())
+                .email(user.getEmail())
                 .address(createFather.getAddress())
                 .profilePicture(file.getBytes())
                 .build();
