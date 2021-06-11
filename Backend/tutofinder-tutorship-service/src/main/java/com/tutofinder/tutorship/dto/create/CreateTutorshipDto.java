@@ -6,7 +6,7 @@ import com.tutofinder.tutorship.entities.Report;
 import lombok.Data;
 
 @Data
-public class CreateTutorShipDto {
+public class CreateTutorshipDto  {
     private int minutesAmmount;
 
     private String tutorShipDescription;

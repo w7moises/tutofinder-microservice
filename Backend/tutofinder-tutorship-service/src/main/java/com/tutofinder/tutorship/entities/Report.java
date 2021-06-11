@@ -1,5 +1,6 @@
 package com.tutofinder.tutorship.entities;
 
+import com.tutofinder.tutorship.model.Student;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,5 +23,8 @@ public class Report  extends  CommonEntity{
     private String descriptionReport;
 
     private String status;
+
+    @Transient
+    private Student student;
 
 }
