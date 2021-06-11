@@ -1,6 +1,5 @@
 package com.tutofinder.customer.controllers;
 
-
 import com.tutofinder.customer.dto.TeacherDto;
 import com.tutofinder.customer.dto.create.CreateTeacherDto;
 import com.tutofinder.customer.entities.Teacher;
@@ -52,6 +51,13 @@ public class TeacherController {
     @GetMapping(value = "teacher/{teacherId}")
     public ResponseEntity<TeacherDto> findById(@PathVariable Long teacherId) {
         Teacher teacher = teacherService.getTeacherById(teacherId);
+        return new ResponseEntity<>(converter.convertTeacherToDto(teacher), HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Retrieve a teacher by email", notes = "This Operation return a teacher by email.")
+    @GetMapping(value = "teacher/email/{email}")
+    public ResponseEntity<TeacherDto> findByEmail(@PathVariable String email) {
+        Teacher teacher = teacherService.getTeacherByEmail(email);
         return new ResponseEntity<>(converter.convertTeacherToDto(teacher), HttpStatus.OK);
     }
 

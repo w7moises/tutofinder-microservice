@@ -33,6 +33,12 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    public Teacher getTeacherByEmail(String email) {
+        Optional<Teacher> teacher = teacherRepository.findByEmail(email);
+        return teacher.orElseThrow(()->new TeacherNotFoundException(email));
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<Teacher> getTeachers() {
         return teacherRepository.findAll();

@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface FatherService {
     Father getFatherById(Long fatherId);
+    Father getFatherByEmail(String email);
     List<Father> getFathers();
     Father createFather(Father createFather, MultipartFile file,String username) throws IOException;
     Father updateFather(Father updateFather, Long fatherId, MultipartFile file) throws IOException;

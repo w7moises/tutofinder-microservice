@@ -48,7 +48,6 @@ public class Teacher extends CommonEntity{
     @Column(name = "membership")
     private String membership;
 
-    @Lob
     @JsonIgnore
     @Column(name = "profile_picture")
     private byte[] profilePicture;

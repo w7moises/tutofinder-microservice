@@ -47,6 +47,13 @@ public class FatherController {
         return new ResponseEntity<>(converter.convertFatherToDto(fathers), HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Retrieve a father by email", notes = "This Operation return a father by email.")
+    @GetMapping(value = "father/email/{email}")
+    public ResponseEntity<FatherDto> findByEmail(@PathVariable String email) {
+        Father father = fatherService.getFatherByEmail(email);
+        return new ResponseEntity<>(converter.convertFatherToDto(father), HttpStatus.OK);
+    }
+
     @ApiOperation(value = "Retrieve a father based on Id ", notes = "This Operation returns a father by Father Id")
     @GetMapping(value = "father/{fatherId}")
     public ResponseEntity<FatherDto> findById(@PathVariable Long fatherId) {

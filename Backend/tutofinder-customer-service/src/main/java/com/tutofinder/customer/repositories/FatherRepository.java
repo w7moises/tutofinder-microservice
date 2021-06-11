@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface FatherRepository extends JpaRepository<Father,Long> {
     @Modifying
@@ -15,4 +17,6 @@ public interface FatherRepository extends JpaRepository<Father,Long> {
     @Modifying
     @Query(value = "DELETE FROM favorite WHERE father_id = ?1 and teacher_id = ?1",nativeQuery = true)
     void deleteFavorite(Long fatherId,Long teacherId);
+
+    Optional<Father> findByEmail(String email);
 }

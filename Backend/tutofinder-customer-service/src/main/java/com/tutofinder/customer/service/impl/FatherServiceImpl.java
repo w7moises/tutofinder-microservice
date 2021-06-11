@@ -40,6 +40,12 @@ public class FatherServiceImpl implements FatherService {
     }
 
     @Override
+    public Father getFatherByEmail(String email) {
+        Optional<Father> father = fatherRepository.findByEmail(email);
+        return father.orElseThrow(()->new FatherNotFoundException(email));
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<Father> getFathers() {
         return fatherRepository.findAll();
