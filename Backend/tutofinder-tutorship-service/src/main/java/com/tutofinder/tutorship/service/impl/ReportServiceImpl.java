@@ -57,7 +57,7 @@ public class ReportServiceImpl implements ReportService {
         StudentDto studentDto = customerServiceClient.findStudentById(reportDto.getStudentId())
                 .orElseThrow(() -> new StudentNotFoundException(ExceptionMessagesEnum.STUDENT_NOT_FOUND.getValue()));
         TutorShip tutorShip = tutorShipRepository.findById(reportDto.getTutorShipId())
-                .orElseThrow(() -> new CourseNotFoundException(ExceptionMessagesEnum.COURSE_NOT_FOUND.getValue()));
+                .orElseThrow(() -> new CourseNotFoundException(ExceptionMessagesEnum.TUTORSHIP_NOT_FOUND.getValue()));
         Report newReport = Report.builder()
         .descriptionReport(reportDto.getDescriptionReport())
         .studentId(reportDto.getStudentId())

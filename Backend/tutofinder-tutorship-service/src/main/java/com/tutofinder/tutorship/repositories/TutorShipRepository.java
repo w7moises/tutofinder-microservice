@@ -5,12 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
-public interface TutorShipRepository extends JpaRepository<TutorShip,Long> {
+public interface TutorShipRepository extends JpaRepository<TutorShip, Long> {
 
     @Query(value = "SELECT t FROM TutorShip t ORDER BY CASE WHEN t.teacher.membership = true THEN 1 ELSE 2 END , t.teacher.membership")
     List<TutorShip> findAll();
