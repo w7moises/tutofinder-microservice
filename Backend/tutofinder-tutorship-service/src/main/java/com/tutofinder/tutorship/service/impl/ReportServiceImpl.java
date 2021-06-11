@@ -1,11 +1,12 @@
 package com.tutofinder.tutorship.service.impl;
 
 import com.tutofinder.tutorship.client.CustomerServiceClient;
+import com.tutofinder.tutorship.dto.ReportDto;
 import com.tutofinder.tutorship.dto.create.CreateReportDto;
 import com.tutofinder.tutorship.entities.Report;
 import com.tutofinder.tutorship.exceptions.ReportNotFoundException;
 import com.tutofinder.tutorship.repositories.ReportRepository;
-import com.tutofinder.tutorship.repositories.TutorshipRepository;
+import com.tutofinder.tutorship.repositories.TutorShipRepository;
 import com.tutofinder.tutorship.service.ReportService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class ReportServiceImpl implements ReportService {
     ReportRepository reportRepository;
 
     @Autowired
-    TutorshipRepository tutorshipRepository;
+    TutorShipRepository tutorShipRepository;
 
     @Autowired
     CustomerServiceClient customerServiceClient;
@@ -45,7 +46,8 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     @Transactional
-    public Report createReport(CreateReportDto createReportDto) {
+    public ReportDto createReport(CreateReportDto createReportDto) {
+        
         Report newReport = Report.builder()
                 .descriptionReport(createReportDto.getDescriptionReport())
                 .status(createReportDto.getStatus())
@@ -56,7 +58,7 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     @Transactional
-    public Report updateReport(Report updateReport, Long ReportId, MultipartFile file) {
+    public ReportDto updateReport(Report updateReport, Long ReportId, MultipartFile file) {
         Optional<Report> report = reportRepository.findById(ReportId);
         if(!report.isPresent()){
             throw new ReportNotFoundException(ReportId.toString());

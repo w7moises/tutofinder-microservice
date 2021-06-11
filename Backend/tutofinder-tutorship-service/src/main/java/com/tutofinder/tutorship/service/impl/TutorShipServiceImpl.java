@@ -8,7 +8,7 @@ import com.tutofinder.tutorship.dto.TutorShipDto;
 import com.tutofinder.tutorship.dto.create.CreateTutorShipDto;
 import com.tutofinder.tutorship.entities.TutorShip;
 import com.tutofinder.tutorship.repositories.CourseRepository;
-import com.tutofinder.tutorship.repositories.TutorshipRepository;
+import com.tutofinder.tutorship.repositories.TutorShipRepository;
 import com.tutofinder.tutorship.service.TutorShipService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class TutorShipServiceImpl implements TutorShipService {
 
     @Autowired
-    TutorshipRepository tutorshipRepository;
+    TutorShipRepository tutorshipRepository;
 
     @Autowired
     CourseRepository courseRepository;

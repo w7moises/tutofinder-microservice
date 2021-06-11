@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface TutorshipRepository extends JpaRepository<TutorShip,Long> {
+public interface TutorShipRepository extends JpaRepository<TutorShip,Long> {
 
-    @Query(value = "SELECT t FROM Tutorship t ORDER BY CASE WHEN t.teacher.membresia = true THEN 1 ELSE 2 END , t.docente.membresia")
+    @Query(value = "SELECT t FROM TutorShip t ORDER BY CASE WHEN t.teacher.membership = true THEN 1 ELSE 2 END , t.teacher.membership")
     List<TutorShip> findAll();
 }

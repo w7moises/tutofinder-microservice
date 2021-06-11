@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import com.tutofinder.tutorship.config.TutorShipServiceConfig;
 import com.tutofinder.tutorship.dto.StudentDto;
+import com.tutofinder.tutorship.dto.TeacherDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -41,7 +42,18 @@ public class CustomerServiceClient {
         return result;
     }
 
-    
-
-
+    public Optional<TeacherDto> findTeacherById(String teacherId) {
+        Optional<TeacherDto> result = Optional.empty();
+        try {
+            result = Optional.ofNullable(restTemplate.getForObject(
+										config.getCustomerServiceUrl() + "teacher/{id}", 
+										TeacherDto.class, teacherId));
+        }
+        catch (HttpClientErrorException ex)   {
+            if (ex.getStatusCode() != HttpStatus.NOT_FOUND) {
+                throw ex;
+            }
+        }
+        return result;
+    }
 }
