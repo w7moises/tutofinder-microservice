@@ -8,5 +8,4 @@ public class ReportDto {
     private String descriptionReport;
     private StudentDto student;
     private  TutorShipDto tutorShip;
-
 }

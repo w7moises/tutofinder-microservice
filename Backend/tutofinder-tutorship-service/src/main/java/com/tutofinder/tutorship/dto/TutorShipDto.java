@@ -13,7 +13,4 @@ public class TutorShipDto {
     private Course course;
 
     private Report report;
-
-    private String status;
-
 }

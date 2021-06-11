@@ -27,5 +27,4 @@ public class Report  extends  CommonEntity{
 
     @Transient
     private  TutorShip tutorShip;
-
 }

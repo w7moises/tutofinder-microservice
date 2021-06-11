@@ -21,6 +21,4 @@ public class Course extends CommonEntity{
 
     @Column(unique = true, nullable = false)
     private String name;
-
-    private String status;
 }

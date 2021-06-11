@@ -5,6 +5,4 @@ import lombok.Data;
 @Data
 public class CreateCourseDto {
     private String name;
-
-    private String status;
 }

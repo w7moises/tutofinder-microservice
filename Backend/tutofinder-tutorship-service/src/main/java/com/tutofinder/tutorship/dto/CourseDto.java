@@ -7,6 +7,4 @@ public class CourseDto {
     private Long id;
 
     private String name;
-
-    private String status;
 }

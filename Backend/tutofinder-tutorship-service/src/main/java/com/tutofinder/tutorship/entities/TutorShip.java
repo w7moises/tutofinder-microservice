@@ -41,7 +41,4 @@ public class TutorShip extends  CommonEntity {
     @JoinColumn(name = "report_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Report report;
-
-    private String status;
-
 }
