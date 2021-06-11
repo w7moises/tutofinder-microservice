@@ -1,5 +1,6 @@
 package com.tutofinder.tutorship.dto.create;
 
+import com.tutofinder.tutorship.dto.TeacherDto;
 import com.tutofinder.tutorship.entities.Course;
 import com.tutofinder.tutorship.entities.Report;
 
@@ -16,4 +17,7 @@ public class CreateTutorshipDto  {
     private Report report;
 
     private String status;
+
+    private TeacherDto teacher;
+
 }
