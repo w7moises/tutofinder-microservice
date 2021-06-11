@@ -22,9 +22,10 @@ public class Report  extends  CommonEntity{
     @Column(name = "description_report")
     private String descriptionReport;
 
-    private String status;
-
     @Transient
     private Student student;
+
+    @Transient
+    private  TutorShip tutorShip;
 
 }

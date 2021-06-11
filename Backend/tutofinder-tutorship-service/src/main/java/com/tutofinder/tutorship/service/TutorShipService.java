@@ -16,7 +16,7 @@ public interface TutorShipService {
 
     TutorShip createTutorShip(CreateTutorShipDto tutorShip);
 
-    TutorShip updateTutorShip(CreateTutorShipDto tutorShip, Long TutorShipId);
+    TutorShip updateTutorShip(CreateTutorShipDto tutorShip, Long tutorShipId);
 
     String deleteTutorShip(Long TutorShipId);
 }

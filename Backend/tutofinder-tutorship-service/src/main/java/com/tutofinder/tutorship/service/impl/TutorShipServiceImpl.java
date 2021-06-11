@@ -29,40 +29,34 @@ public class TutorShipServiceImpl implements TutorShipService {
     @Autowired
     private CustomerServiceClient customerServiceClient;
 
+
     @Override
-    public TutorShipDto getTutorShipById(Long TutorShipId) {
-        // TODO Auto-generated method stub
+    public TutorShip getTutorShipById(Long TutorShipId) {
         return null;
     }
 
     @Override
-    public List<TutorShipDto> getTutorShips() {
-        // TODO Auto-generated method stub
+    public List<TutorShip> getTutorShips() {
         return null;
     }
 
     @Override
-    public List<TutorShipDto> getTutorShips(Pageable pageable) {
-        // TODO Auto-generated method stub
+    public List<TutorShip> getTutorShips(Pageable pageable) {
         return null;
     }
 
     @Override
-    public TutorShipDto createTutorShip(CreateTutorShipDto tutorShip) {
-        // TODO Auto-generated method stub
+    public TutorShip createTutorShip(CreateTutorShipDto tutorShip) {
         return null;
     }
 
     @Override
-    public TutorShipDto updateTutorShip(CreateTutorShipDto tutorShip, Long TutorShipId) {
-        // TODO Auto-generated method stub
+    public TutorShip updateTutorShip(CreateTutorShipDto tutorShip, Long tutorShipId) {
         return null;
     }
 
     @Override
     public String deleteTutorShip(Long TutorShipId) {
-        // TODO Auto-generated method stub
         return null;
     }
-
 }

@@ -32,6 +32,39 @@ public class ReportServiceImpl implements ReportService {
 
 
     @Override
+    @Transactional(readOnly = true)
+    public Report getReportById(Long ReportId) {
+        Optional<Report> teacher = reportRepository.findById(ReportId);
+        return teacher.orElseThrow(()->new ReportNotFoundException(ReportId.toString()));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Report> getReports() {
+
+        return reportRepository.findAll();
+    }
+
+    @Override
+    public Report createReport(CreateReportDto reportDto) {
+        Report newReport = Report.builder()
+                .descriptionReport(reportDto.getDescriptionReport())
+                .build();
+        return reportRepository.save(newReport);
+    }
+
+    @Override
+    public Report updateReport(CreateReportDto reportDto, Long ReportId, MultipartFile file) {
+        return null;
+    }
+
+    @Override
+    public String deleteReport(Long ReportId) {
+        return null;
+    }
+
+/*
+    @Override
     @Transactional
     public Report getReportById(Long ReportId) {
         Optional<Report> report = reportRepository.findById(ReportId);
@@ -76,4 +109,7 @@ public class ReportServiceImpl implements ReportService {
         reportRepository.deleteById(ReportId);
         return "Report id deleted: "+ReportId;
     }
+
+
+ */
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 public class ReportDto {
     private Long id;
     private String descriptionReport;
-    private String status;
+    private StudentDto student;
+    private  TutorShipDto tutorShip;
 
 }
