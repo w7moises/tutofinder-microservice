@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.transaction.annotation.Propagation;
 import com.tutofinder.payment.client.CustomerServiceClient;
 import com.tutofinder.payment.dto.TeacherDto;
@@ -22,6 +25,7 @@ import com.tutofinder.payment.services.MembershipService;
 import org.springframework.stereotype.Service;
 
 //TODO: Revisar que funcione
+@Slf4j
 @Service
 public class MembershipServiceImpl implements MembershipService {
 
@@ -56,8 +60,11 @@ public class MembershipServiceImpl implements MembershipService {
 
         TeacherDto teacherDto = customerServiceClient.findTeacherById(createMembership.getTeacherId())
         .orElseThrow(() -> new CustomerNotFoundException("TEACHER_NOT_FOUND"));
+        log.info("TEACHER: ", teacherDto);
+
         Card card = cardRepository.findById(createMembership.getCardId())
         .orElseThrow(() -> new CardNotFoundException("CARD_NOT_FOUND"));
+        log.info("CARD: ", card);
 
         if(membershipRepository.findByTeacherIdAndCardId(teacherDto.getId(), card.getId()).isPresent()){
             throw new InvalidRequestException("MEMBERSHIP_IS_CURRENTLY_ACTIVE");
@@ -83,8 +90,11 @@ public class MembershipServiceImpl implements MembershipService {
     public Membership updateMembership(CreateMembershipDto updateMembership, Long membershipId) throws RuntimeException{
         TeacherDto teacherDto = customerServiceClient.findTeacherById(updateMembership.getTeacherId())
         .orElseThrow(() -> new CustomerNotFoundException("TEACHER_NOT_FOUND"));
+        log.info("TEACHER: ", teacherDto);
+
         Card card = cardRepository.findById(updateMembership.getCardId())
         .orElseThrow(() -> new CardNotFoundException("CARD_NOT_FOUND"));
+        log.info("CARD: ", card);
 
         if(membershipRepository.findByTeacherIdAndCardId(teacherDto.getId(), card.getId()).isPresent()){
             throw new InvalidRequestException("MEMBERSHIP_IS_CURRENTLY_ACTIVE");
@@ -108,7 +118,7 @@ public class MembershipServiceImpl implements MembershipService {
     @Override
     public String deleteMembership(Long membershipId) {
         if (!membershipRepository.existsById(membershipId)) {
-            throw new MembershipNotFoundException(membershipId.toString());
+            throw new MembershipNotFoundException("MEMBERSHIP_NOT_FOUND");
         }
         membershipRepository.deleteById(membershipId);
         return "Membership with id " + membershipId + " deleted";
