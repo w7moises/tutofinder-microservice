@@ -1,6 +1,8 @@
 package com.tutofinder.payment.services;
 
 import java.util.List;
+
+import com.tutofinder.payment.dto.create.CreateMembershipDto;
 import com.tutofinder.payment.entities.Membership;
 
 public interface MembershipService {
@@ -8,9 +10,9 @@ public interface MembershipService {
 
     List<Membership> getMemberships();
 
-    Membership createMembership(Membership createMembership);
+    Membership createMembership(CreateMembershipDto createMembership) throws RuntimeException;
 
-    Membership updateMembership(Membership updateMembership, Long membershipId);
+    Membership updateMembership(CreateMembershipDto updateMembership, Long membershipId) throws RuntimeException;
 
     String deleteMembership(Long membershipId);
 
