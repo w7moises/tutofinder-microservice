@@ -1,7 +1,4 @@
 package com.tutofinder.payment.entities;
-
-import com.tutofinder.payment.models.Father;
-import com.tutofinder.payment.models.Reservation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,11 +19,11 @@ public class Payment extends CommonEntity{
     private Long id;
 
     @Column(name = "payment_description")
-    @NotEmpty(message = "La descripcion no debe estar vacia")
+    @NotEmpty(message = "The description must not be null")
     private String paymentDescription;
 
-    @Transient
-    private Father father;
+    @Column(name = "father_id")
+    private Long fatherId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "card_id",nullable = false)
@@ -35,6 +32,6 @@ public class Payment extends CommonEntity{
     @Column(name = "payment_cost")
     private double paymentCost;
 
-    @Transient
-    private Reservation reservation;
+    @Column(name = "reservation_id")
+    private Long reservationId;
 }

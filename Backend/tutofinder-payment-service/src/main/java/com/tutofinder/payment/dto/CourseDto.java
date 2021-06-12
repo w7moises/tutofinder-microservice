@@ -1,11 +1,11 @@
-package com.tutofinder.payment.models;
+package com.tutofinder.payment.dto;
 
 
 import lombok.Data;
 
 @Data
 
-public class Course {
+public class CourseDto {
 
     private Long id;
     private String name;

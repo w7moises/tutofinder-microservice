@@ -19,15 +19,15 @@ public class Card extends CommonEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "El número de tarjeta no puede estar vacío")
+    @NotEmpty(message = "Card number can't be empty")
     @Column(name = "card_number", nullable = false,length = 16)
     private String cardNumber;
 
-    @NotEmpty(message = "La fecha de expiración no puede estar vacía")
+    @NotEmpty(message = "Expiration date can't be empty")
     @Column(name = "expire_date", nullable = false)
     private String expireDate;
 
-    @NotEmpty(message = "El nombre del poseedor no puede estar vacío")
+    @NotEmpty(message = "Owner name can't be empty")
     @Column(name = "owner_name", nullable = false)
     private String ownerName;
 }

@@ -1,15 +1,18 @@
 package com.tutofinder.payment.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
+import javax.persistence.*;
 import java.util.Date;
 
-@Getter
-@Setter
+@Data
 public class ReservationDto {
     private Long id;
-    private Long studentId;
-    private Long tutorshipId;
+    private StudentDto student;
+    private TutorshipDto tutorship;
     private Date createAt;
+    @PrePersist
+    public void PrePersist() {
+        this.createAt = new Date();
+    }
 }

@@ -1,26 +1,18 @@
-package com.tutofinder.payment.models;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+package com.tutofinder.payment.dto;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
+import lombok.Data;
 import java.util.Date;
 
 
 @Data
-
-public class Student {
+public class StudentDto {
 
     private Long id;
     private String name;
     private String lastName;
     private String grade;
-    private Father father;
+    private FatherDto father;
     private String dni;
     private String email;
     private byte[] picture;
