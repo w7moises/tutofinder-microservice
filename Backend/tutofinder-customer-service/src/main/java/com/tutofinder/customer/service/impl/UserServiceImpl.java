@@ -22,8 +22,6 @@ public class UserServiceImpl implements UserDetailsService , UserService {
     @Autowired
     private UserRepository userRepository;
 
-    private Long DEFAULT_ROL = 2L;
-
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -50,9 +48,9 @@ public class UserServiceImpl implements UserDetailsService , UserService {
 
     @Override
     @Transactional
-    public User registerUser(User user){
+    public User registerUser(User user,Long id){
         User newUser = userRepository.save(user);
-        userRepository.register(user.getId(),DEFAULT_ROL);
+        userRepository.register(user.getId(),id);
         return newUser;
     }
 }

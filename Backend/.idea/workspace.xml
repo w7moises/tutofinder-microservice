@@ -73,18 +73,12 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
-  <component name="RunManager" selected="Gradle.FatherServiceTest">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.tutofinder.payment.dto" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.TutofinderCustomerServiceApplication">
     <configuration name="FatherServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -184,10 +178,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.TutofinderCustomerServiceApplication" />
         <item itemvalue="Gradle.FatherServiceTest" />
         <item itemvalue="Gradle.FatherServiceTest.aa" />
         <item itemvalue="Gradle.FatherServiceTest.getFatherByIdTest" />
-        <item itemvalue="Spring Boot.TutofinderCustomerServiceApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -213,6 +207,8 @@
       <workItem from="1623446685513" duration="3877000" />
       <workItem from="1623460195785" duration="53000" />
       <workItem from="1623460256128" duration="1332000" />
+      <workItem from="1623711974621" duration="8054000" />
+      <workItem from="1623766840195" duration="2378000" />
     </task>
     <servers />
   </component>

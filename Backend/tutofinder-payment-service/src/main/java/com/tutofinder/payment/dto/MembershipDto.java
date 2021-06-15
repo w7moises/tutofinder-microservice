@@ -12,6 +12,4 @@ public class MembershipDto {
     private double cost;
     private Long teacherId;
     private Long cardId;
-    // private TeacherDto teacher;
-    // private CardDto card;
 }

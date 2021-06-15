@@ -13,7 +13,6 @@ import lombok.Getter;
 public class PaymentServiceConfig {
     @Value("${customerservice.url}")
     private String customerServiceUrl;
-
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();

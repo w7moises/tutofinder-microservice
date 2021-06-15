@@ -13,6 +13,7 @@ public class FatherDto {
     private String email;
     private AddressDto address;
     private List<StudentDto> students;
+    private List<TeacherDto> teachers;
     private Date createdDate;
     private Date lastUpdateDate;
 }

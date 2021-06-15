@@ -42,12 +42,11 @@ public class UserController {
     }
 
     @ApiOperation(value = "Creates a user", notes = "This Operation creates a new user.")
-    @PostMapping(value = "user")
-    public ResponseEntity<?> createUser(@RequestBody @Valid User user){
+    @PostMapping(value = "user/{rol}")
+    public ResponseEntity<?> createUser(@RequestBody @Valid User user,@PathVariable Long rol){
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setEnabled(true);
-        user = userService.registerUser(user);
+        user = userService.registerUser(user,rol);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
-
 }

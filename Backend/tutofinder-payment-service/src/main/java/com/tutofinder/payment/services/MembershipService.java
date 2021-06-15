@@ -7,13 +7,8 @@ import com.tutofinder.payment.entities.Membership;
 
 public interface MembershipService {
     Membership getMembershipById(Long membershipId);
-
     List<Membership> getMemberships();
-
     Membership createMembership(CreateMembershipDto createMembership) throws RuntimeException;
-
     Membership updateMembership(CreateMembershipDto updateMembership, Long membershipId) throws RuntimeException;
-
     String deleteMembership(Long membershipId);
-
 }

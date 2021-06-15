@@ -24,7 +24,6 @@ import com.tutofinder.payment.repositories.MembershipRepository;
 import com.tutofinder.payment.services.MembershipService;
 import org.springframework.stereotype.Service;
 
-//TODO: Revisar que funcione
 @Slf4j
 @Service
 public class MembershipServiceImpl implements MembershipService {
@@ -55,7 +54,7 @@ public class MembershipServiceImpl implements MembershipService {
 
     // TODO: VER ESTO -> @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public Membership createMembership(CreateMembershipDto createMembership) throws RuntimeException {
 
         TeacherDto teacherDto = customerServiceClient.findTeacherById(createMembership.getTeacherId())
@@ -64,7 +63,7 @@ public class MembershipServiceImpl implements MembershipService {
 
         Card card = cardRepository.findById(createMembership.getCardId())
         .orElseThrow(() -> new CardNotFoundException("CARD_NOT_FOUND"));
-        log.info("CARD: ", card);
+        log.info("CARD:", card);
 
         if(membershipRepository.findByTeacherIdAndCardId(teacherDto.getId(), card.getId()).isPresent()){
             throw new InvalidRequestException("MEMBERSHIP_IS_CURRENTLY_ACTIVE");
