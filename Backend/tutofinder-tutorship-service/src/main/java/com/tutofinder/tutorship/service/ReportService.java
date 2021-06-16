@@ -14,7 +14,7 @@ public interface ReportService {
 
     Report createReport(CreateReportDto reportDto)  throws RuntimeException;
 
-    Report updateReport(CreateReportDto reportDto, Long ReportId, MultipartFile file)  throws RuntimeException;
+    Report updateReport(CreateReportDto reportDto, Long ReportId)  throws RuntimeException;
 
     String deleteReport(Long ReportId);
 }

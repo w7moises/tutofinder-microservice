@@ -9,12 +9,14 @@ import com.tutofinder.tutorship.dto.create.CreateReportDto;
 import com.tutofinder.tutorship.entities.Report;
 import com.tutofinder.tutorship.entities.TutorShip;
 import com.tutofinder.tutorship.exceptions.CourseNotFoundException;
+import com.tutofinder.tutorship.exceptions.ReportInternalServerException;
 import com.tutofinder.tutorship.exceptions.ReportNotFoundException;
 import com.tutofinder.tutorship.exceptions.StudentNotFoundException;
 import com.tutofinder.tutorship.repositories.ReportRepository;
 import com.tutofinder.tutorship.repositories.TutorShipRepository;
 import com.tutofinder.tutorship.service.ReportService;
 import com.tutofinder.tutorship.util.ExceptionMessagesEnum;
+import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 
@@ -61,30 +63,51 @@ public class ReportServiceImpl implements ReportService {
                 .orElseThrow(() -> new StudentNotFoundException(ExceptionMessagesEnum.STUDENT_NOT_FOUND.getValue()));
         TutorShip tutorShip = tutorShipRepository.findById(reportDto.getTutorShipId())
                 .orElseThrow(() -> new CourseNotFoundException(ExceptionMessagesEnum.TUTORSHIP_NOT_FOUND.getValue()));
+      try{
+          Report newReport = Report.builder()
+                  .descriptionReport(reportDto.getDescriptionReport())
+                  .studentId(reportDto.getStudentId())
+                  .tutorShip(tutorShip)
+                  .build();
+          return reportRepository.save(newReport);
+      } catch (Exception e) {
+          throw new ReportInternalServerException("INTERNAL_SERVER_ERROR");
+      }
 
-        Report newReport = Report.builder()
-        .descriptionReport(reportDto.getDescriptionReport())
-        .studentId(reportDto.getStudentId())
-        .tutorShip(tutorShip)
-        .build();
-        return reportRepository.save(newReport);
     }
 
     @Override
-    public Report updateReport(CreateReportDto reportDto, Long ReportId, MultipartFile file)  throws RuntimeException {
-        Optional<Report> report = reportRepository.findById(ReportId);
-        if(!report.isPresent()){
+    public Report updateReport(CreateReportDto reportDto, Long ReportId)  throws RuntimeException {
+        Report report1 =reportRepository.findById(ReportId).orElseThrow(
+                ()-> new ReportNotFoundException("Report doesn't found")
+        );
+
+        StudentDto studentDto = customerServiceClient.findStudentById(reportDto.getStudentId())
+                .orElseThrow(() -> new StudentNotFoundException(ExceptionMessagesEnum.STUDENT_NOT_FOUND.getValue()));
+        TutorShip tutorShip = tutorShipRepository.findById(reportDto.getTutorShipId())
+                .orElseThrow(() -> new CourseNotFoundException(ExceptionMessagesEnum.TUTORSHIP_NOT_FOUND.getValue()));
+
+        if (!reportRepository.findById(ReportId).isPresent()) {
             throw new ReportNotFoundException(ReportId.toString());
         }
-        Report report1 = report.get();
+
+        Long id;
         report1.setDescriptionReport(reportDto.getDescriptionReport());
-        return reportRepository.save(report1);
+
+        try {
+            id = reportRepository.save(report1).getId();
+        } catch (Exception e) {
+            throw  new InternalException(
+                    "INTERNAL SERVER ERROR"
+            );
+        }
+        return getReportById(id);
     }
 
     @Override
     public String deleteReport(Long ReportId) {
         if(!reportRepository.existsById(ReportId)){
-            throw new StudentNotFoundException(ReportId.toString());
+            throw new StudentNotFoundException("REPORT_NOT_FOUND");
         }
         reportRepository.deleteById(ReportId);
         return "Student id deleted: "+ ReportId;
