@@ -14,9 +14,9 @@ public interface TutorShipService {
 
     List<TutorShip> getTutorShips(Pageable pageable);
 
-    TutorShip createTutorShip(CreateTutorShipDto tutorShip);
+    TutorShip createTutorShip(CreateTutorShipDto tutorShip)  throws RuntimeException;
 
-    TutorShip updateTutorShip(CreateTutorShipDto tutorShip, Long tutorShipId);
+    TutorShip updateTutorShip(CreateTutorShipDto tutorShip, Long tutorShipId)  throws RuntimeException;
 
     String deleteTutorShip(Long TutorShipId);
 }

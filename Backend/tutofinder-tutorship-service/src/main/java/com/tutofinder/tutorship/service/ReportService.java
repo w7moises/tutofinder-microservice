@@ -12,9 +12,9 @@ public interface ReportService {
 
     List<Report> getReports();
 
-    Report createReport(CreateReportDto reportDto);
+    Report createReport(CreateReportDto reportDto)  throws RuntimeException;
 
-    Report updateReport(CreateReportDto reportDto, Long ReportId, MultipartFile file);
+    Report updateReport(CreateReportDto reportDto, Long ReportId, MultipartFile file)  throws RuntimeException;
 
     String deleteReport(Long ReportId);
 }
