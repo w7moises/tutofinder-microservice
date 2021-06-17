@@ -19,7 +19,6 @@ import java.util.List;
 @CrossOrigin({"http://localhost:4200"})
 @Api
 @RestController
-@Secured("ROLE_FATHER")
 public class StudentController {
 
     @Autowired

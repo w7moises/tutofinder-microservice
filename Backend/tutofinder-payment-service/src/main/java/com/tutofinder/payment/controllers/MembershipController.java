@@ -1,6 +1,5 @@
 package com.tutofinder.payment.controllers;
 
-import java.io.IOException;
 import java.util.List;
 
 import com.tutofinder.payment.dto.MembershipDto;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
