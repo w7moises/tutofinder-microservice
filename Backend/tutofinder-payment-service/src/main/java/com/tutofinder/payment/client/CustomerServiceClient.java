@@ -19,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 public class CustomerServiceClient {
+
     private RestTemplate restTemplate;
 
     @Autowired
@@ -31,7 +32,7 @@ public class CustomerServiceClient {
     public Optional<TeacherDto> findTeacherById(Long teacherId) {
         Optional<TeacherDto> result = Optional.empty();
         try {
-            result = Optional.ofNullable(restTemplate.getForObject(config.getCustomerServiceUrl() + "teacher/{id}",
+            result = Optional.ofNullable(restTemplate.getForObject(config.getCustomerServiceUrl() + "/teacher/{id}",
                     TeacherDto.class, teacherId));
         } catch (HttpClientErrorException ex) {
             if (ex.getStatusCode() != HttpStatus.NOT_FOUND) {

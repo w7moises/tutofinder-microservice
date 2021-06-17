@@ -65,6 +65,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tutofinder-payment-service/src/main/java/com/tutofinder/payment/config" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -74,11 +75,14 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\OneDrive\Documentos\GitHub\tutofinder-microservice\Backend\tutofinder-payment-service\src\main\java\com\tutofinder\payment\config" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.tutofinder.payment.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.TutofinderCustomerServiceApplication">
+  <component name="RunManager" selected="Spring Boot.TutofinderPaymentServiceApplication">
     <configuration name="FatherServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -208,7 +212,9 @@
       <workItem from="1623460195785" duration="53000" />
       <workItem from="1623460256128" duration="1332000" />
       <workItem from="1623711974621" duration="8054000" />
-      <workItem from="1623766840195" duration="2378000" />
+      <workItem from="1623766840195" duration="4222000" />
+      <workItem from="1623775888528" duration="21000" />
+      <workItem from="1623960161101" duration="4328000" />
     </task>
     <servers />
   </component>
@@ -231,6 +237,22 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/tutofinder-payment-service/src/main/java/com/tutofinder/payment/services/impl/MembershipServiceImpl.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/tutofinder-payment-service/src/main/java/com/tutofinder/payment/services/impl/MembershipServiceImpl.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Backend$FatherServiceTest_aa.ic" NAME="FatherServiceTest.aa Coverage Results" MODIFIED="1623448799575" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

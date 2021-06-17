@@ -1,8 +1,10 @@
 package com.tutofinder.payment.controllers;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.tutofinder.payment.dto.MembershipDto;
+import com.tutofinder.payment.dto.create.CreateMembershipDto;
 import com.tutofinder.payment.entities.Membership;
 import com.tutofinder.payment.services.MembershipService;
 import com.tutofinder.payment.util.EntityConverter;
@@ -10,14 +12,13 @@ import com.tutofinder.payment.util.EntityConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.validation.Valid;
 
 @CrossOrigin({"http://localhost:4200"})
 @Api
@@ -41,6 +42,13 @@ public class MembershipController {
     public ResponseEntity<MembershipDto> findById(@PathVariable Long membershipId) {
         Membership membership = membershipService.getMembershipById(membershipId);
         return new ResponseEntity<>(converter.convertMembershipToDto(membership), HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Creates a  membership", notes = "This Operation creates a new membership.")
+    @PostMapping(value = "membership")
+    public ResponseEntity<MembershipDto> createTeacher(@Valid @RequestBody CreateMembershipDto membershipDto){
+        Membership membership = membershipService.createMembership(membershipDto);
+        return new ResponseEntity<>(converter.convertMembershipToDto(membership), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "Deletes a Membership", notes = "This Operation deletes a membership.")

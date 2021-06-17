@@ -10,7 +10,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Data
-@Table(name = "tarjetas")
+@Table(name = "cards")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

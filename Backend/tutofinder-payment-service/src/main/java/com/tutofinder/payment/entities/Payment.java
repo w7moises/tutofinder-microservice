@@ -9,7 +9,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Data
-@Table(name = "pagos")
+@Table(name = "payments")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
