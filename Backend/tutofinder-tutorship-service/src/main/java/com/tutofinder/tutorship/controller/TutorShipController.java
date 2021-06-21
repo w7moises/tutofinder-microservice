@@ -53,7 +53,7 @@ public class TutorShipController {
     @ApiOperation(value = "Retrieve all existing tutorShips with pageable", notes = "This Operation returns all stored tutorShips with pageable.")
     @GetMapping(value = "tutorShip/page")
     public ResponseEntity<List<TutorShipDto>> findAll(Pageable pageable) {
-        List<TutorShip> tutorShips = tutorShipService.getTutorShips(pageable);
+        List<TutorShip> tutorShips = tutorShipService.getTutorShips();
         return new ResponseEntity<>(converter.convertTutorShipToDto(tutorShips), HttpStatus.OK);
     }
 

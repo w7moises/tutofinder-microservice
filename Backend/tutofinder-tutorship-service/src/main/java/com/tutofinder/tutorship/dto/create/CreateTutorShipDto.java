@@ -9,7 +9,6 @@ import lombok.Data;
 public class CreateTutorShipDto {
     private int minutesAmmount;
     private String tutorShipDescription;
-    private Course course;
-    private Report report;
+    private Long courseId;
     private Long teacherId;
 }

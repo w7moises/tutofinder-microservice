@@ -12,5 +12,4 @@ import javax.swing.text.html.Option;
 @Repository
 public interface ReportRepository extends JpaRepository<Report,Long> {
      Optional<Report> findById(Long id);
-     Studen
 }

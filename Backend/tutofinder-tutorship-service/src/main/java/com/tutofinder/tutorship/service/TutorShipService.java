@@ -12,7 +12,6 @@ public interface TutorShipService {
 
     List<TutorShip> getTutorShips();
 
-    List<TutorShip> getTutorShips(Pageable pageable);
 
     TutorShip createTutorShip(CreateTutorShipDto tutorShip)  throws RuntimeException;
 
