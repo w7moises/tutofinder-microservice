@@ -27,40 +27,34 @@ public class CourseServiceImpl implements CourseService {
     public static final ModelMapper modelMapper = new ModelMapper();
 
     @Override
-    public CourseDto getCourseById(Long courseId) {
-        return modelMapper.map(getCourseEntity(courseId), CourseDto.class);
+    public Course getCourseById(Long courseId) {
+        Optional<Course> course = courseRepository.findById(courseId);
+        return course.orElseThrow(()-> new CourseNotFoundException(courseId.toString()));
     }
 
     @Override
-    public CourseDto getCourseByName(String name) {
-        final Course course = courseRepository.findByName(name)
-                .orElseThrow(() -> new CourseNotFoundException(ExceptionMessagesEnum.COURSE_NOT_FOUND.getValue()));
-        return modelMapper.map(course, CourseDto.class);
+    public Course getCourseByName(String name) {
+        Optional<Course>  course = courseRepository.findByName(name);
+        return course.orElseThrow(() -> new CourseNotFoundException(ExceptionMessagesEnum.COURSE_NOT_FOUND.getValue()));
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<CourseDto> getCourses() {
-        final List<Course> coursesEntity = courseRepository.findAll();
-        return coursesEntity.stream().map(service -> modelMapper.map(service, CourseDto.class))
-                .collect(Collectors.toList());
+    public List<Course> getCourses() {
+        return courseRepository.findAll();
     }
 
     @Override
-    public CourseDto createCourse(CreateCourseDto createCourseDto) {
-        Course courseEntity = new Course();
-        Long id;
-        courseEntity.setName(createCourseDto.getName());
-        try {
-            id = courseRepository.save(courseEntity).getId();
-        } catch (final Exception e) {
-            throw new CourseInternalServerException("couldnt't create course object");
-        }
-        return modelMapper.map(getCourseEntity(id), CourseDto.class);
+    public Course createCourse(CreateCourseDto createCourseDto) {
+        Course newcourse = Course.builder()
+                .name(createCourseDto.getName())
+                .build();
+        return courseRepository.save(newcourse);
+
     }
 
     @Override
-    public CourseDto updateCourse(CreateCourseDto createCourseDto, Long courseId) {
+    public Course updateCourse(CreateCourseDto createCourseDto, Long courseId) {
         Optional<Course> course = courseRepository.findById(courseId);
         if (!course.isPresent()) {
             throw new CourseNotFoundException(ExceptionMessagesEnum.COURSE_NOT_FOUND.getValue());
@@ -73,7 +67,7 @@ public class CourseServiceImpl implements CourseService {
         } catch (final Exception e) {
             throw new CourseInternalServerException("couldnt't update course object");
         }
-        return modelMapper.map(getCourseEntity(id), CourseDto.class);
+        return getCourseById(id);
     }
 
     @Override

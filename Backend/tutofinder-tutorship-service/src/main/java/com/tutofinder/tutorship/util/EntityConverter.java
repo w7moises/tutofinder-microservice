@@ -66,6 +66,10 @@ public class EntityConverter {
         return tutorShips.stream().map(tutorShip -> modelMapper.map(tutorShip, TutorShipDto.class))
                 .collect(Collectors.toList());
     }
+    public List<CourseDto> convertCreateCourseToDto(List<Course> courses) {
+        return courses.stream().map(course -> modelMapper.map(course, CourseDto.class))
+                .collect(Collectors.toList());
+    }
 
     public TutorShip convertTutorShipToEntity(TutorShipDto tutorShipDto) {
         return modelMapper.map(tutorShipDto, TutorShip.class);
