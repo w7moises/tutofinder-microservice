@@ -3,6 +3,7 @@ package com.tutofinder.tutorship.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import com.sun.jdi.InternalException;
 import com.tutofinder.tutorship.client.CustomerServiceClient;
 import com.tutofinder.tutorship.dto.StudentDto;
 import com.tutofinder.tutorship.dto.create.CreateReportDto;
@@ -16,7 +17,6 @@ import com.tutofinder.tutorship.repositories.ReportRepository;
 import com.tutofinder.tutorship.repositories.TutorShipRepository;
 import com.tutofinder.tutorship.service.ReportService;
 import com.tutofinder.tutorship.util.ExceptionMessagesEnum;
-import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 
