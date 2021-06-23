@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface TutorShipRepository extends JpaRepository<TutorShip, Long> {
 
-    @Query(value = "SELECT t FROM TutorShip t ORDER BY CASE WHEN t.teacher.membership = true THEN 1 ELSE 2 END , t.teacher.membership")
-    List<TutorShip> findAll();
+    // @Query(value = "SELECT t FROM TutorShip ts INNER JOIN Teacher t ON ts.teacherId=t.id ORDER BY CASE WHEN t.membership = true THEN 1 ELSE 2 END , t.membership")
+    // List<TutorShip> findAll();
 }

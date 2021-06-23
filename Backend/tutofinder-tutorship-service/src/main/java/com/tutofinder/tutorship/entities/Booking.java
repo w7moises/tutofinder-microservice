@@ -19,15 +19,11 @@ public class Booking extends CommonEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Student_Id")
-    private Long StudentId;
+    @Column(name = "student_Id")
+    private Long studentId;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tutorship_Id")
+    @JoinColumn(name = "tutor_ship_Id")
     private TutorShip tutorShip;
-
-
-
-
 }

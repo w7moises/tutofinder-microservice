@@ -57,8 +57,8 @@ public class TutorShipServiceImpl implements TutorShipService {
 
         Long id;
         TutorShip newtutor = new TutorShip();
-        newtutor.setCantidadMinutos(tutorShip.getMinutesAmmount());
-        newtutor.setDescripcionTutoria(tutorShip.getTutorShipDescription());
+        newtutor.setMinutes(tutorShip.getMinutesAmmount());
+        newtutor.setDescription(tutorShip.getTutorShipDescription());
         newtutor.setTeacherId(tutorShip.getTeacherId());
         newtutor.setCourse(course);
 
@@ -86,8 +86,8 @@ public class TutorShipServiceImpl implements TutorShipService {
         }
         TutorShip newtutorship = tutorShip1.get();
         newtutorship.setTeacherId(tutorShip.getTeacherId());
-        newtutorship.setDescripcionTutoria(tutorShip.getTutorShipDescription());
-        newtutorship.setCantidadMinutos(tutorShip.getMinutesAmmount());
+        newtutorship.setDescription(tutorShip.getTutorShipDescription());
+        newtutorship.setMinutes(tutorShip.getMinutesAmmount());
         newtutorship.setCourse(course);
 
         try{

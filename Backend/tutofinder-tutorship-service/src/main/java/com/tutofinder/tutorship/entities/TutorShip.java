@@ -24,12 +24,12 @@ public class TutorShip extends  CommonEntity {
     @Column(name = "tutorship_id")
     private Long id;
 
-    @Positive(message = "La cantidad de minutos debe ser mayor a cero")
-    @Column(name = "cantidad_minutos", nullable = false)
-    private int cantidadMinutos;
+    @Positive(message = "the minutes amount must be greater than 0")
+    @Column(name = "minutes", nullable = false)
+    private int minutes;
 
-    @Column(name = "description_tutoria")
-    private String descripcionTutoria;
+    @Column(name = "description")
+    private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
@@ -39,11 +39,11 @@ public class TutorShip extends  CommonEntity {
     @Column(name = "teacher_id")
     private Long teacherId;
 
-    @OneToMany(mappedBy = "tutorship", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "tutorShip", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties(value = {"tutorship"}, allowSetters = true)
     private List<Booking> bookings;
 
-    @OneToMany(mappedBy = "tutorship", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "tutorShip", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties(value = {"tutorship"}, allowSetters = true)
     private List<Report> reports;
 }
