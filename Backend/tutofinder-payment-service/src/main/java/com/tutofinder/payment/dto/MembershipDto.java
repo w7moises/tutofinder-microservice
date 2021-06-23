@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class MembershipDto {
     private Long id;
-    private String expirationDate;
+    private Date expirationDate;
     private String description;
     private double cost;
     private Long teacherId;

@@ -40,7 +40,7 @@ public class MembershipServiceImpl implements MembershipService {
 
     @Override
     @Transactional(readOnly = true)
-    public Membership getMembershipById(Long membershipId) {
+    public Membership getMembershipById(Long membershipId) throws RuntimeException{
         Optional<Membership> membership = membershipRepository.findById(membershipId);
         return membership.orElseThrow(() -> new MembershipNotFoundException(membershipId.toString()));
     }
@@ -120,7 +120,7 @@ public class MembershipServiceImpl implements MembershipService {
             throw new MembershipNotFoundException("MEMBERSHIP_NOT_FOUND");
         }
         membershipRepository.deleteById(membershipId);
-        return "Membership with id " + membershipId + " deleted";
+        return "Membership deleted";
     }
 
 }

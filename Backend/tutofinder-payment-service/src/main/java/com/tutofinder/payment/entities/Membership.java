@@ -27,7 +27,7 @@ public class Membership extends CommonEntity {
     private Long id;
 
     @Column(name = "expiration_date", nullable = false)
-    private String expirationDate;
+    private Date expirationDate;
 
     @NotEmpty(message = "Description must not be null")
     @Column(name = "description", nullable = false)
