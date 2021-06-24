@@ -44,7 +44,7 @@ public class MembershipController {
 
     @ApiOperation(value = "Creates a  membership", notes = "This Operation creates a new membership.")
     @PostMapping(value = "membership")
-    public ResponseEntity<MembershipDto> createTeacher(@Valid @RequestBody CreateMembershipDto membershipDto){
+    public ResponseEntity<MembershipDto> createMembership(@Valid @RequestBody CreateMembershipDto membershipDto){
         Membership membership = membershipService.createMembership(membershipDto);
         return new ResponseEntity<>(converter.convertMembershipToDto(membership), HttpStatus.CREATED);
     }

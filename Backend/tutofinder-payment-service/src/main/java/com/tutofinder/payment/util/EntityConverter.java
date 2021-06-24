@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.tutofinder.payment.dto.MembershipDto;
+import com.tutofinder.payment.dto.PaymentDto;
 import com.tutofinder.payment.dto.create.CreateMembershipDto;
+import com.tutofinder.payment.dto.create.CreatePaymentDto;
 import com.tutofinder.payment.entities.Membership;
+import com.tutofinder.payment.entities.Payment;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +39,27 @@ public class EntityConverter {
         return memberships.stream().map(membership -> modelMapper.map(membership, MembershipDto.class))
                 .collect(Collectors.toList());
     }
+    public Payment convertPaymentToEntity(PaymentDto paymentdto) {
+        return modelMapper.map(paymentdto, Payment.class);
+    }
 
-    //TODO: agregar el resto de mapeos
+    public Payment convertPaymentToEntity(CreatePaymentDto paymentdto) {
+        return modelMapper.map(paymentdto, Payment.class);
+    }
+
+    public PaymentDto convertPaymentToDto(Payment payment) {
+        return modelMapper.map(payment, PaymentDto.class);
+    }
+
+    public Payment convertCreatePaymentToEntity(CreatePaymentDto createpayment) {
+        return modelMapper.map(createpayment, Payment.class);
+    }
+
+    public List<PaymentDto> convertPaymentToDto(List<Payment> payments) {
+        return payments.stream().map(payment -> modelMapper.map(payment, PaymentDto.class))
+                .collect(Collectors.toList());
+    }
+
+    //TODO: agregar el resto de mapeos de Card
 
 }

@@ -32,6 +32,6 @@ public class Payment extends CommonEntity{
     @Column(name = "payment_cost")
     private double paymentCost;
 
-    @Column(name = "reservation_id")
-    private Long reservationId;
+    @Column(name = "booking_id")
+    private Long bookingId;
 }
