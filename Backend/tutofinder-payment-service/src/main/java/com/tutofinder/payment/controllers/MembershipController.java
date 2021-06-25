@@ -49,6 +49,14 @@ public class MembershipController {
         return new ResponseEntity<>(converter.convertMembershipToDto(membership), HttpStatus.CREATED);
     }
 
+    @ApiOperation(value = "Modifies a  membership", notes = "This Operation modifies a membership.")
+    @PostMapping(value = "membership/{membershipId}")
+    public ResponseEntity<MembershipDto> updateMembership(@RequestBody @Valid CreateMembershipDto membershipDto,@PathVariable Long membershipId){
+        Membership membership = converter.convertCreateMembershipToEntity(membershipDto);
+        membership = membershipService.updateMembership(membership, membershipId);
+        return new ResponseEntity<>(converter.convertMembershipToDto(membership), HttpStatus.CREATED);
+    }
+
     @ApiOperation(value = "Deletes a Membership", notes = "This Operation deletes a membership.")
     @DeleteMapping(value = "membership/{membershipId}")
     public String deleteMembership(@PathVariable Long membershipId) {
