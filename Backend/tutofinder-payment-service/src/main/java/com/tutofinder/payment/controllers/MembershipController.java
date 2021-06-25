@@ -63,5 +63,4 @@ public class MembershipController {
         String response = membershipService.deleteMembership(membershipId);
         return response;
     }
-    // TODO: El resto de oper. crud
 }

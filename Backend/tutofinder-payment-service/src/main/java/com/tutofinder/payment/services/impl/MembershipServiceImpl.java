@@ -86,7 +86,7 @@ public class MembershipServiceImpl implements MembershipService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public Membership updateMembership(CreateMembershipDto updateMembership, Long membershipId) throws RuntimeException{
+    public Membership updateMembership(Membership updateMembership, Long membershipId) throws RuntimeException{
         TeacherDto teacherDto = customerServiceClient.findTeacherById(updateMembership.getTeacherId())
         .orElseThrow(() -> new CustomerNotFoundException("TEACHER_NOT_FOUND"));
         log.info("TEACHER: ", teacherDto);
