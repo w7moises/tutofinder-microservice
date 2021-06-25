@@ -3,12 +3,15 @@ package com.tutofinder.tutorship.util;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.tutofinder.tutorship.dto.BookingDto;
 import com.tutofinder.tutorship.dto.CourseDto;
 import com.tutofinder.tutorship.dto.ReportDto;
 import com.tutofinder.tutorship.dto.TutorShipDto;
+import com.tutofinder.tutorship.dto.create.CreateBookingDto;
 import com.tutofinder.tutorship.dto.create.CreateCourseDto;
 import com.tutofinder.tutorship.dto.create.CreateReportDto;
 import com.tutofinder.tutorship.dto.create.CreateTutorShipDto;
+import com.tutofinder.tutorship.entities.Booking;
 import com.tutofinder.tutorship.entities.Course;
 import com.tutofinder.tutorship.entities.Report;
 import com.tutofinder.tutorship.entities.TutorShip;
@@ -21,6 +24,24 @@ import org.springframework.stereotype.Component;
 public class EntityConverter {
     @Autowired
     private ModelMapper modelMapper;
+
+    public BookingDto convertBookingToDto(Booking booking) {
+        return modelMapper.map(booking, BookingDto.class);
+    }
+
+    public List<BookingDto> convertBookingToDto(List<Booking> bookings) {
+        return bookings.stream().map(booking -> modelMapper.map(booking, BookingDto.class)).collect(Collectors.toList());
+    }
+
+    public Booking convertBookingToEntity(BookingDto bookingDto) {
+        return modelMapper.map(bookingDto, Booking.class);
+    }
+
+    public Booking convertCreateBookingToEntity(CreateBookingDto bookingDto) {
+        return modelMapper.map(bookingDto, Booking.class);
+    }
+    
+
 
     public CourseDto convertCourseToDto(Course course) {
         return modelMapper.map(course, CourseDto.class);

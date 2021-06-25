@@ -2,6 +2,8 @@ package com.tutofinder.tutorship.handler;
 
 import java.time.LocalDateTime;
 
+import com.tutofinder.tutorship.exceptions.BookingInternalServerException;
+import com.tutofinder.tutorship.exceptions.BookingNotFoundException;
 import com.tutofinder.tutorship.exceptions.CourseInternalServerException;
 import com.tutofinder.tutorship.exceptions.CourseNotFoundException;
 import com.tutofinder.tutorship.exceptions.ReportInternalServerException;
@@ -29,6 +31,13 @@ public class TutorShipServiceExceptionHandler extends ResponseEntityExceptionHan
         return new ResponseEntity<>(response, response.getStatus());
     }
 
+    @ExceptionHandler(BookingInternalServerException.class)
+    public ResponseEntity<Object> handleIncorrectRequest(BookingInternalServerException exception, WebRequest request) {
+        TutorShipServiceExceptionResponse response = new TutorShipServiceExceptionResponse(exception.getMessage(),
+                request.getDescription(false), HttpStatus.INTERNAL_SERVER_ERROR, LocalDateTime.now());
+        return new ResponseEntity<>(response, response.getStatus());
+    }
+
     @ExceptionHandler(CourseInternalServerException.class)
     public ResponseEntity<Object> handleIncorrectRequest(CourseInternalServerException exception, WebRequest request) {
         TutorShipServiceExceptionResponse response = new TutorShipServiceExceptionResponse(exception.getMessage(),
@@ -47,6 +56,13 @@ public class TutorShipServiceExceptionHandler extends ResponseEntityExceptionHan
     public ResponseEntity<Object> handleIncorrectRequest(TutorShipInternalServerException exception, WebRequest request) {
         TutorShipServiceExceptionResponse response = new TutorShipServiceExceptionResponse(exception.getMessage(),
                 request.getDescription(false), HttpStatus.INTERNAL_SERVER_ERROR, LocalDateTime.now());
+        return new ResponseEntity<>(response, response.getStatus());
+    }
+
+    @ExceptionHandler(BookingNotFoundException.class)
+    public ResponseEntity<Object> handleCourseResourceNotFound(BookingNotFoundException exception, WebRequest request) {
+        TutorShipServiceExceptionResponse response = new TutorShipServiceExceptionResponse(exception.getMessage(),
+                request.getDescription(false), HttpStatus.NOT_FOUND, LocalDateTime.now());
         return new ResponseEntity<>(response, response.getStatus());
     }
 

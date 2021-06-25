@@ -84,9 +84,4 @@ public class CourseServiceImpl implements CourseService {
 
         return "CURSO_DELETED";
     }
-
-    private Course getCourseEntity(Long courseId) {
-        return courseRepository.findById(courseId)
-                .orElseThrow(() -> new CourseNotFoundException(ExceptionMessagesEnum.COURSE_NOT_FOUND.getValue()));
-    }
 }

@@ -1,6 +1,7 @@
 package com.tutofinder.tutorship.util;
 
 public enum ExceptionMessagesEnum {
+    BOOKING_NOT_FOUND("Booking Not Found"),
     TUTORSHIP_NOT_FOUND("TutorShip Not Found"),
     REPORT_NOT_FOUND("Report Not Found"),
     COURSE_NOT_FOUND("Course Not Found"),

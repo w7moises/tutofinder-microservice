@@ -1,6 +1,9 @@
 package com.tutofinder.tutorship.dto.create;
 
+import lombok.Data;
+
+@Data
 public class CreateBookingDto {
-    private Long teacherId;
-    private Long tutorshipId;
+    private Long studentId;
+    private Long tutorShipId;
 }
