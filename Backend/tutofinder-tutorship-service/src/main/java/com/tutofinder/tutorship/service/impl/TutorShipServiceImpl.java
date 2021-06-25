@@ -17,11 +17,13 @@ import com.tutofinder.tutorship.repositories.CourseRepository;
 import com.tutofinder.tutorship.repositories.TutorShipRepository;
 import com.tutofinder.tutorship.service.TutorShipService;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @Service
 public class TutorShipServiceImpl implements TutorShipService {
 
@@ -36,9 +38,10 @@ public class TutorShipServiceImpl implements TutorShipService {
 
 
     @Override
-    public TutorShip getTutorShipById(Long TutorShipId) {
+    @Transactional(readOnly = true)
+    public TutorShip getTutorShipById(Long TutorShipId) throws RuntimeException {
         Optional<TutorShip> tutorShip = tutorshipRepository.findById(TutorShipId);
-        return tutorShip.orElseThrow(()-> new TutorShipNotFoundException("NOT_FOUND"));
+        return tutorShip.orElseThrow(()-> new TutorShipNotFoundException(TutorShipId.toString()));
     }
 
     @Override

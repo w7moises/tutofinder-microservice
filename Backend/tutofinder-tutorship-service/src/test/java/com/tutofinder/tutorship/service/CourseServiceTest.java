@@ -27,7 +27,7 @@ public class CourseServiceTest {
     public static final Course COURSE = new Course();
 
     CreateCourseDto CREATE_COURSE_DTO = new CreateCourseDto();
-    private static final String COURSE_DELETED = "Course deleted";
+    private static final String COURSE_DELETED ="CURSO_DELETED";
     private static final Optional<Course> OPTIONAL_EMPTY = Optional.empty();
     private static final Optional<Course> OPTIONAL_COURSE = Optional.of(COURSE);
 
@@ -83,7 +83,7 @@ public class CourseServiceTest {
     public void deleteCourseOk() throws RuntimeException {
         Mockito.when(courseRepository.existsById(COURSE_ID)).thenReturn(true);
         final String response = courseServiceImpl.deleteCourse(COURSE_ID);
-        assertEquals(response,COURSE_DELETED );
+        assertEquals(response,"CURSO_DELETED");
 
     }
 
