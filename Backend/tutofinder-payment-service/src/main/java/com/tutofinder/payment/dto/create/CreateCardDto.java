@@ -1,12 +1,10 @@
 package com.tutofinder.payment.dto.create;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class CreateCardDto {
     private String cardNumber;
     private String expireDate;
-    private String ownerNumber;
+    private String ownerName;
 }

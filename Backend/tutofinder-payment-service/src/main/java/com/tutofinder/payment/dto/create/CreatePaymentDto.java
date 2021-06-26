@@ -10,5 +10,5 @@ public class CreatePaymentDto {
     private Long fatherId;
     private Long cardId;
     private double paymentCost;
-    private Long reservationId;
+    private Long bookingId;
 }

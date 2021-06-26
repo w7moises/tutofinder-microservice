@@ -44,8 +44,16 @@ public class MembershipController {
 
     @ApiOperation(value = "Creates a  membership", notes = "This Operation creates a new membership.")
     @PostMapping(value = "membership")
-    public ResponseEntity<MembershipDto> createTeacher(@Valid @RequestBody CreateMembershipDto membershipDto){
+    public ResponseEntity<MembershipDto> createMembership(@Valid @RequestBody CreateMembershipDto membershipDto){
         Membership membership = membershipService.createMembership(membershipDto);
+        return new ResponseEntity<>(converter.convertMembershipToDto(membership), HttpStatus.CREATED);
+    }
+
+    @ApiOperation(value = "Modifies a  membership", notes = "This Operation modifies a membership.")
+    @PostMapping(value = "membership/{membershipId}")
+    public ResponseEntity<MembershipDto> updateMembership(@RequestBody @Valid CreateMembershipDto membershipDto,@PathVariable Long membershipId){
+        Membership membership = converter.convertCreateMembershipToEntity(membershipDto);
+        membership = membershipService.updateMembership(membership, membershipId);
         return new ResponseEntity<>(converter.convertMembershipToDto(membership), HttpStatus.CREATED);
     }
 
@@ -55,5 +63,4 @@ public class MembershipController {
         String response = membershipService.deleteMembership(membershipId);
         return response;
     }
-    // TODO: El resto de oper. crud
 }

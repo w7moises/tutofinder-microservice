@@ -9,6 +9,6 @@ public interface MembershipService {
     Membership getMembershipById(Long membershipId);
     List<Membership> getMemberships();
     Membership createMembership(CreateMembershipDto createMembership) throws RuntimeException;
-    Membership updateMembership(CreateMembershipDto updateMembership, Long membershipId) throws RuntimeException;
+    Membership updateMembership(Membership membership, Long membershipId) throws RuntimeException;
     String deleteMembership(Long membershipId);
 }
