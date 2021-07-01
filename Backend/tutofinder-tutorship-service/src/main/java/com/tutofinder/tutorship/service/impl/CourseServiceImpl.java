@@ -51,7 +51,6 @@ public class CourseServiceImpl implements CourseService {
                 .name(createCourseDto.getName())
                 .build();
         return courseRepository.save(newcourse);
-
     }
 
     @Override

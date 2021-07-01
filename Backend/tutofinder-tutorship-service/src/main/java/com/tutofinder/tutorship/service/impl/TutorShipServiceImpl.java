@@ -21,6 +21,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
@@ -51,32 +53,33 @@ public class TutorShipServiceImpl implements TutorShipService {
     }
 
     @Override
-    public TutorShip createTutorShip(CreateTutorShipDto tutorShip) {
+    @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
+    public TutorShip createTutorShip(CreateTutorShipDto tutorShip) throws RuntimeException {
+        TutorShip newtutor = new TutorShip();
         TeacherDto teacherDto = customerServiceClient.findTeacherById(tutorShip.getTeacherId())
                 .orElseThrow(()-> new TeacherNotFoundException("TEACHER_NOTFOUND"));
 
         Course course = courseRepository.findById(tutorShip.getCourseId())
                 .orElseThrow(()-> new CourseNotFoundException("COURSE_NOTFOUND"));
 
-        Long id;
-        TutorShip newtutor = new TutorShip();
-        newtutor.setMinutes(tutorShip.getMinutesAmmount());
-        newtutor.setDescription(tutorShip.getTutorShipDescription());
-        newtutor.setTeacherId(tutorShip.getTeacherId());
-        newtutor.setCourse(course);
-
         //newtutor.setReport(tutorShip.getReport());
         try{
-            id = tutorshipRepository.save(newtutor).getId();
+            Long id;
+            newtutor.setMinutes(tutorShip.getMinutesAmmount());
+            newtutor.setDescription(tutorShip.getTutorShipDescription());
+            newtutor.setTeacherId(tutorShip.getTeacherId());
+            newtutor.setCourse(course);
+            newtutor = tutorshipRepository.save(newtutor);
+            return  newtutor;
 
         } catch (Exception e){
             throw  new InternalServerErrorException("INTERNAL_SERVER_ERROR");
         }
-        return getTutorShipById(id);
+        //return getTutorShipById(id);
     }
 
     @Override
-    public TutorShip updateTutorShip(CreateTutorShipDto tutorShip, Long tutorShipId) {
+    public TutorShip updateTutorShip(CreateTutorShipDto tutorShip, Long tutorShipId) throws RuntimeException {
         Optional<TutorShip> tutorShip1 = tutorshipRepository.findById(tutorShipId);
         TeacherDto teacherDto = customerServiceClient.findTeacherById(tutorShip.getTeacherId())
                 .orElseThrow(() -> new TeacherNotFoundException("TEACHER_NOTFOUND"));
