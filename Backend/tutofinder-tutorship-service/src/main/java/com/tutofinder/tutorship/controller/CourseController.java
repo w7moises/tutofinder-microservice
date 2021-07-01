@@ -56,7 +56,7 @@ public class CourseController {
     public ResponseEntity<CourseDto> updateCourse(@Valid CreateCourseDto courseDto, Long courseId){
         // Course course = converter.convertCreateCourseToEntity(courseDto);
         Course course = courseservice.updateCourse(courseDto,courseId);
-        return new ResponseEntity<>(converter.convertCourseToDto(course), HttpStatus.CREATED);
+        return new ResponseEntity<>(converter.convertCourseToDto(course), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Deletes a Course", notes = "This Operation deletes a course.")

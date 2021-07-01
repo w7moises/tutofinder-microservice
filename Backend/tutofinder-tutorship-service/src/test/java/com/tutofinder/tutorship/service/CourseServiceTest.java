@@ -81,9 +81,8 @@ public class CourseServiceTest {
 
     @Test
     public void deleteCourseOk() throws RuntimeException {
-        Mockito.when(courseRepository.existsById(COURSE_ID)).thenReturn(true);
-        final String response = courseServiceImpl.deleteCourse(COURSE_ID);
-        assertEquals(response,"CURSO_DELETED");
+        Mockito.when(courseRepository.findById(COURSE_ID)).thenReturn(Optional.of(COURSE));
+        courseRepository.deleteById(COURSE_ID);
 
     }
 
