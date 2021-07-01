@@ -53,7 +53,7 @@ public class FatherServiceImpl implements FatherService {
 
     @Override
     @Transactional
-    public Father createFather(Father createFather, MultipartFile file,String username) throws IOException {
+    public Father createFather(Father createFather,String username) throws IOException {
         User user = userRepository.findByUsername(username);
         Father newFather = Father.builder()
                 .firstName(createFather.getFirstName())
@@ -61,7 +61,6 @@ public class FatherServiceImpl implements FatherService {
                 .dni(createFather.getDni())
                 .email(user.getEmail())
                 .address(createFather.getAddress())
-                .profilePicture(file.getBytes())
                 .build();
         return fatherRepository.save(newFather);
     }
@@ -78,7 +77,6 @@ public class FatherServiceImpl implements FatherService {
         newFather.setLastName(updateFather.getLastName());
         newFather.setDni(updateFather.getDni());
         newFather.setEmail(updateFather.getEmail());
-        newFather.setProfilePicture(file.getBytes());
         newFather.setAddress(updateFather.getAddress());
         return fatherRepository.save(newFather);
     }

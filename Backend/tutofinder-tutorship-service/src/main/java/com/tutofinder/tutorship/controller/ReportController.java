@@ -14,12 +14,7 @@ import com.tutofinder.tutorship.util.EntityConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -50,12 +45,14 @@ public class ReportController {
 
     @ApiOperation(value = "Creates a  report", notes = "This Operation creates a new report.")
     @PostMapping(value = "report")
-    public ResponseEntity<ReportDto> createReport(@Valid CreateReportDto reportDto){
+    public ResponseEntity<ReportDto> createReport(@RequestBody @Valid CreateReportDto reportDto){
         Report report = reportservice.createReport(reportDto);
         return new ResponseEntity<>(converter.convertReportToDto(report), HttpStatus.CREATED);
     }
 
-    public ResponseEntity<ReportDto> updateReport(@Valid CreateReportDto reportDto, Long reportId){
+    @ApiOperation(value = "Creates a  report", notes = "This Operation creates a new report.")
+    @PutMapping(value = "report/{reportId}")
+    public ResponseEntity<ReportDto> updateReport(@RequestBody @Valid CreateReportDto reportDto,@PathVariable Long reportId){
         Report report = reportservice.updateReport(reportDto,reportId);
         return new ResponseEntity<>(converter.convertReportToDto(report), HttpStatus.CREATED);
     }

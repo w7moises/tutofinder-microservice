@@ -62,9 +62,9 @@ public class TeacherController {
 
     @ApiOperation(value = "Creates a teacher", notes = "This Operation creates a new teacher.")
     @PostMapping(value = "teacher/{username}")
-    public ResponseEntity<TeacherDto> createTeacher(@Valid CreateTeacherDto teacherDto,@PathVariable String username, @RequestParam MultipartFile file) throws IOException {
+    public ResponseEntity<TeacherDto> createTeacher(@RequestBody @Valid CreateTeacherDto teacherDto,@PathVariable String username) throws IOException {
         Teacher teacher = converter.convertCreateTeacherToEntity(teacherDto);
-        teacher = teacherService.createTeacher(teacher,file,username);
+        teacher = teacherService.createTeacher(teacher,username);
         return new ResponseEntity<>(converter.convertTeacherToDto(teacher), HttpStatus.CREATED);
     }
 

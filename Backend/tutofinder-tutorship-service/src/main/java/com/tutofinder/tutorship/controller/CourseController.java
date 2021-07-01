@@ -47,13 +47,14 @@ public class CourseController {
 
     @ApiOperation(value = "Creates a  course", notes = "This Operation creates a new course.")
     @PostMapping(value = "course")
-    public ResponseEntity<CourseDto> createCourse(@Valid CreateCourseDto courseDto){
+    public ResponseEntity<CourseDto> createCourse(@RequestBody @Valid CreateCourseDto courseDto){
        // Course course = converter.convertCreateCourseToEntity(courseDto);
         Course course = courseservice.createCourse(courseDto);
         return new ResponseEntity<>(converter.convertCourseToDto(course), HttpStatus.CREATED);
     }
-
-    public ResponseEntity<CourseDto> updateCourse(@Valid CreateCourseDto courseDto, Long courseId){
+    @ApiOperation(value = "Updates a  course", notes = "This Operation updates a new course.")
+    @PutMapping(value = "course/{courseId}")
+    public ResponseEntity<CourseDto> updateCourse(@RequestBody  @Valid CreateCourseDto courseDto,@PathVariable Long courseId){
         // Course course = converter.convertCreateCourseToEntity(courseDto);
         Course course = courseservice.updateCourse(courseDto,courseId);
         return new ResponseEntity<>(converter.convertCourseToDto(course), HttpStatus.CREATED);

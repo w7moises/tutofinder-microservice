@@ -49,7 +49,7 @@ public class Teacher extends CommonEntity{
     private String membership;
 
     @JsonIgnore
-    @Column(name = "profile_picture")
+    @Column(name = "profile_picture",nullable = true)
     private byte[] profilePicture;
 
     /*@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)

@@ -62,9 +62,9 @@ public class FatherController {
 
     @ApiOperation(value = "Creates a father", notes = "This Operation creates a new father.")
     @PostMapping(value = "father/{username}")
-    public ResponseEntity<FatherDto> createFather(@Valid CreateFatherDto fatherDto,@PathVariable String username, @RequestParam MultipartFile file) throws IOException{
+    public ResponseEntity<FatherDto> createFather(@RequestBody @Valid CreateFatherDto fatherDto,@PathVariable String username) throws IOException{
         Father father = converter.convertCreateFatherToEntity(fatherDto);
-        father = fatherService.createFather(father,file,username);
+        father = fatherService.createFather(father,username);
         return new ResponseEntity<>(converter.convertFatherToDto(father), HttpStatus.CREATED);
     }
 

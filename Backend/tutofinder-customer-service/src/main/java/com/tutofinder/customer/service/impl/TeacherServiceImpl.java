@@ -46,7 +46,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     @Transactional
-    public Teacher createTeacher(Teacher createTeacher, MultipartFile file,String username) throws IOException {
+    public Teacher createTeacher(Teacher createTeacher,String username) throws IOException {
         User user = userRepository.findByUsername(username);
         Teacher newTeacher = Teacher.builder()
                 .firstName(createTeacher.getFirstName())
@@ -57,7 +57,6 @@ public class TeacherServiceImpl implements TeacherService {
                 .depositNumber(createTeacher.getDepositNumber())
                 .membership(Membreship.inactive.toString())
                 .hourlyCost(createTeacher.getHourlyCost())
-                .profilePicture(file.getBytes())
                 .build();
         return teacherRepository.save(newTeacher);
     }

@@ -50,7 +50,7 @@ public class Father extends CommonEntity{
     private List<Teacher> teachers;
 
     @JsonIgnore
-    @Column(name = "profile_picture")
+    @Column(name = "profile_picture",nullable = true)
     private byte[] profilePicture;
 
 }
