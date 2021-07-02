@@ -24,12 +24,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 @RestController
 public class TutorShipServiceExceptionHandler extends ResponseEntityExceptionHandler {
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Object> handleAllExceptions(Exception exception, WebRequest request) {
-        TutorShipServiceExceptionResponse response = new TutorShipServiceExceptionResponse(exception.getMessage(),
-                request.getDescription(false), HttpStatus.INTERNAL_SERVER_ERROR, LocalDateTime.now());
-        return new ResponseEntity<>(response, response.getStatus());
-    }
+        // @ExceptionHandler(Exception.class)
+        // public ResponseEntity<Object> handleAllExceptions(Exception exception, WebRequest request) {
+        //     TutorShipServiceExceptionResponse response = new TutorShipServiceExceptionResponse(exception.getMessage(),
+        //             request.getDescription(false), HttpStatus.INTERNAL_SERVER_ERROR, LocalDateTime.now());
+        //     return new ResponseEntity<>(response, response.getStatus());
+        // }
 
     @ExceptionHandler(BookingInternalServerException.class)
     public ResponseEntity<Object> handleIncorrectRequest(BookingInternalServerException exception, WebRequest request) {

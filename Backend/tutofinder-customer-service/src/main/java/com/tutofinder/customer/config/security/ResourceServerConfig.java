@@ -22,11 +22,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/v2/api-docs/**").permitAll()
-                .antMatchers("/api/v1/user/**").permitAll()
-                .antMatchers("/api/v1/father/**").permitAll()
-                .antMatchers("/api/v1/student/**").permitAll()
-                .antMatchers("/api/v1/teacher/**").permitAll()
-                .antMatchers("/api/v1/oauth/**").permitAll()
+                .antMatchers("/api/v1/customer/**").permitAll()
+                // .antMatchers("/api/v1/user/**").permitAll()
+                // .antMatchers("/api/v1/father/**").permitAll()
+                // .antMatchers("/api/v1/student/**").permitAll()
+                // .antMatchers("/api/v1/teacher/**").permitAll()
+                // .antMatchers("/api/v1/oauth/**").permitAll()
                 .and().cors().configurationSource(corsConfigurationSource());
     }
 

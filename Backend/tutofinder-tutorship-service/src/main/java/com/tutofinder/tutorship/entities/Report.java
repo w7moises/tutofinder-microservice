@@ -33,6 +33,6 @@ public class Report  extends  CommonEntity{
     private Long studentId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tutor_ship_id")
+    @JoinColumn(name = "tutorship_id")
     private TutorShip tutorShip;
 }

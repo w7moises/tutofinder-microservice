@@ -23,6 +23,6 @@ public class Booking extends CommonEntity{
     private Long studentId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tutor_ship_Id")
+    @JoinColumn(name = "tutorship_Id")
     private TutorShip tutorShip;
 }

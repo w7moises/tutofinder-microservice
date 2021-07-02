@@ -66,7 +66,7 @@ public class ReportServiceImpl implements ReportService {
       try{
           Report newReport = Report.builder()
                   .descriptionReport(reportDto.getDescriptionReport())
-                  .studentId(reportDto.getStudentId())
+                  .studentId(studentDto.getId())
                   .tutorShip(tutorShip)
                   .build();
           return reportRepository.save(newReport);
